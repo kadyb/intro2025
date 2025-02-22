@@ -27,7 +27,7 @@ Aplikacja dostępna jest na różnych platformach do pobrania w [tym miejscu](ht
 
 # Materiały do kursu
 
-1. Typy i struktury danych
+1. [Typy i struktury danych](https://kadyb.github.io/intro2025/cwiczenia/01_Typy_struktury_danych.html)
 
 # Materiały dodatkowe
 
