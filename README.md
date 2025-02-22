@@ -3,6 +3,16 @@
 To repozytorium zawiera materiały do kursu "Wstęp do programowania" prowadzonego
 na Uniwersytecie Adama Mickiewicza w semestrze letnim w 2025 r.
 
+Programowanie to proces tworzenia instrukcji, które komputer może zinterpretować i wykonać
+do realizacji określonych zadań. Ten proces składa się z kilku etapów. Na początku
+projektowanie algorytmu, następnie pisanie kodu, a na końcu debugowanie i testowanie 
+stworzonej funkcji czy systemu. Dzięki programowaniu możliwe jest tworzenie aplikacji,
+automatyzacja powtarzalnych zadań czy analiza i przetwarzanie danych.
+
+R jest jednym z języków programowania używanym przede wszystkim do analizy i
+przetwarzania danych oraz tworzenia wizualizacji. Jest preferowany ze względu na niski
+próg wejścia, prostą składnię oraz ogromny ekosystem wspierany przez społeczność.
+
 # Wstęp
 
 **1. Instalacja R**
