@@ -1,0 +1,336 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Typy i struktury danych"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+R to interpretowany język programowania wysokiego poziomu wykorzystywany przede
+wszystkim do przetwarzania, analizy i wizualizacji danych. Jest powszechnie
+używany zarówno w środowisku akademickim, jak i w przemyśle, szczególnie w takich
+dziedzinach jak statystyka, uczenie maszynowe, systemy informacji geograficznej
+czy bioinformatyka.
+
+Cechy języka R:
+
+- darmowy i otwarty,
+- język interpretowany (kod wykonywany jest linia po linii, bez potrzeby kompilacji),
+- język wysokiego poziomu (pominięcie aspektów związanych z zarządzaniem pamięcią),
+- dynamiczne typowanie (zmienne nie wymagają jawnych deklaracji przed użyciem),
+- wsparcie dwóch paradygmatów programowania, tj. obiektowego i funkcjonalnego,
+- duży ekosystem (biblioteki, wsparcie, tutoriale),
+- indeksowanie od 1,
+- zwektoryzowane operacje (brak konieczności pisania pętli).
+
+# Zmienne
+
+Do przypisania wartości zmiennej można wykorzystać dwa operatory: `<-` oraz `=`.
+Są między nimi pewne różnice, jednakże dla spójności z innymi językami
+programowania można korzystać z operatora `=` w następujący sposób:
+
+```{r}
+x = 10           # liczba
+imie = "Tomek"   # tekst
+```
+
+Znak `#` służy do komentowania kodu. Wartościowe i zwięzłe komentarze sprawiają,
+że kod staje się zrozumiały.
+
+Utworzone zmienne można wyświetlić wywołując bezpośrednio stworzony obiekt lub
+używając funkcji `print()`.
+
+```{r}
+x
+print(imie)
+```
+
+# Typy danych
+
+Typ danych definiuje rodzaj wartości, jaką zmienna może przechowywać, oraz
+operacje, jakie można na niej wykonywać. Możemy wyróżnić następujące podstawowe
+typy danych:
+
+- numeryczny **numeric**:
+  - liczby całkowite **integer** (np. -10, 0, 10),
+  - liczby zmiennoprzecinkowe **double** (np. 0.01, 21.37),
+- tekstowy **character** (np. "Ala ma kota.", 'rower'),
+- logiczny **logical** (TRUE, FALSE).
+
+Do sprawdzenia typu danych służy funkcja `typeof()`.
+
+```{r}
+typeof(10.1)
+typeof(10)
+typeof("Tomek")
+typeof(TRUE)
+```
+
+**Uwaga!** Domyślnie wszystkie liczby traktowane są jako zmiennoprzecinkowe,
+tak jak w powyższym przykładzie 10 posiada typ `double`, mimo iż jest całkowita.
+Aby traktować ją jako całkowitą należy do liczby dodać literę `L`.
+
+```{r}
+typeof(10L)
+```
+
+# Struktury danych
+
+Struktura danych to format organizowania, przetwarzania i przechowywania danych.
+Jest to sposób na uporządkowanie danych w pamięci komputera lub na dysku, tak
+aby można było z nich efektywnie korzystać.
+
+Różne rodzaje struktur danych sprawdzają się w różnych zadaniach. Wybór
+właściwej dla danej sytuacji jest kluczową częścią programowania i
+tworzenia efektywnych algorytmów.
+
+## Wektor
+
+Wektory (*vector*) stanowią najprostszą strukturę danych. Są to jednowymiarowe
+tablice, które mogą przechowywać zbiór elementów tego samego typu danych (np.
+tylko liczby, tylko tekst lub tylko wartości logiczne). Wektory są podstawą
+bardziej złożonych struktur danych, takich jak macierze czy ramki danych.
+
+Do tworzenia wektorów wykorzystuje się funkcje `c()` (*combine*) łączącą elementy.
+
+```{r}
+# stworzenie wektora
+vec = c(1, 2, 3, 4, 5)
+vec
+```
+
+```{r}
+vec = c("a", "b", "c", "d", "e")
+vec
+```
+
+Aby odwołać się do poszczególnych elementów wektora używa się pojedynczych
+nawiasów kwadratowych (`[]`) oraz indeksów.
+
+```{r}
+# selekcja poprzez indeks
+vec[3]
+vec[1:3]
+vec[-5]
+```
+
+## Czynnik
+
+Czynnik (*factor*) używany jest do reprezentowania zmiennych kategorycznych
+podczas pracy z danymi jakościowymi, takimi jak etykiety czy klasy, ponieważ
+przechowują unikalne wartości kategorii. Mogą być również uporządkowane
+(stopniowane) według określonej kolejności (np. niski < średni < wysoki).
+
+Czynniki są przechowywane jako liczby całkowite, tj. każdej kategorii
+przypisywany jest unikalny kod liczby całkowitej, co efektywnie ogranicza ilość
+zajmowanej pamięci. Dodatkowo, przechowywane są etykiety (opisy) powiązane z
+tymi liczbami całkowitymi.
+
+Do tworzenia czynników służy funkcja `factor()`.
+
+```{r}
+fct = factor(c("Drzewo", "Skała", "Budynek", "Drzewo", "Drzewo"))
+
+length(fct)  # liczba wszystkich elementów w wektorze
+nlevels(fct) # liczba kategorii
+levels(fct)  # wyświetl kategorie
+```
+
+## Macierz
+
+Macierze (*matrix*) to dwuwymiarowe tablice składające się z wierszy oaz kolumn,
+w których wszystkie elementy są tego samego typu.
+
+Do tworzenia macierzy służy funkcja `matrix()`.
+
+```{r}
+mat = matrix(1:9, ncol = 3)
+mat
+```
+
+Podobnie jak w przypadku wektorów, selekcja danych odbywa się poprzez nawiasy
+kwadratowe i wskazanie dwóch indeksów w tej kolejności: `[wiersze, kolumny]`.
+
+```{r}
+# selekcja pierwszego wiersza
+mat[1, ]
+
+# selekcja pierwszej kolumny
+mat[, 1]
+```
+
+## Lista
+
+Lista jest uniwersalną strukturą danych, która może przechowywać dowolne zbiory
+obiektów o różnych typach i długościach. Listy mogą zawierać inne listy
+(a nawet inne struktury), tworząc zagnieżdżone hierarchie o dowolnej głębokości.
+
+Do tworzenia list służy funkcja `list()`.
+
+```{r}
+lst = list(imie = "Ania", wiek = 25, oceny = c(4, 4, 5), czy_student = TRUE)
+lst
+```
+
+Selekcja w przypadku list jest bardziej zaawansowana niż w przypadku wektorów,
+ponieważ można dokonać jej na trzy różne sposoby:
+
+- znak dolara `$` jeśli lista posiada nazwy,
+- podwójne nawiasy kwadratowe `[[]]` (zwraca tylko zawartość listy),
+- pojedynczy nawias kwadratowy `[]` (zwraca listę i jej zawartość).
+
+```{r}
+lst$imie
+
+lst["oceny"]   # zwrócona jest lista
+
+lst[["oceny"]] # zwrócony jest wektor
+```
+
+Jeśli mamy do czynienia ze strukturą zagnieżdżoną, to do selekcji używamy kolejne
+nawiasy kwadratowe lub symbol dolara, które odnoszą się do kolejnych poziomów
+w hierarchii.
+
+```{r}
+lst = list(
+  osoba1 = list(imie = "Ania", wiek = 25),
+  osoba2 = list(imie = "Andrzej", wiek = 30)
+)
+
+lst$osoba1$wiek # wiek pierwszej osoby
+```
+
+## Ramka danych
+
+Ramka danych (*data frame*) jest fundamentalną i najczęściej używaną strukturą
+danych do przechowywania i przetwarzania danych tabelarycznych (tj. zorganizowane
+w wierszach i kolumnach, jak w arkuszu kalkulacyjnym czy bazie danych).
+Znajomość ramek danych jest absolutnie niezbędna do przeprowadzania wszelkiego
+rodzaju analiz danych!
+
+Ramka danych ma dwuwymiarowy, prostokątny format, składający się z wierszy i
+kolumn. Każdy wiersz reprezentuje pojedynczą obserwację (rekord). Każda kolumna
+reprezentuje zmienną (atrybut), które mogą być różnego typu. Co więcej,
+kolumny muszą posiadać nazwy oraz dokładnie tę samą długość. W sytuacji, gdy
+kolumny nie mają tej samej długości, używa się brakujących wartości `NA`
+(*Not Available*).
+
+Ramkę danych można stworzyć używając funkcję `data.frame()` i definiując
+wektory jako kolumny.
+
+```{r}
+df = data.frame(
+  imie = c("Ania", "Andrzej"), 
+  wiek = c(25, 30),
+  miasto = c("Warszawa", "Kraków")
+)
+df
+```
+
+Selekcja danych wygląda identycznie jak w przypadku list (ponieważ formalnie
+ramka danych jest listą).
+
+```{r}
+df$imie
+
+df$imie[1]
+
+df[1, 1]
+
+df[df$wiek == 25, "imie"]
+```
+
+# Operatory
+
+## Arytmetyczne
+
+- Dodawanie `+`,
+- Odejmowanie `-`,
+- Mnożenie `*`,
+- Dzielenie `/`,
+- Modulo `%%` (reszta z dzielenia),
+- Potęgowanie `^`.
+
+```{r}
+a = 10
+b = 3
+```
+
+```{r}
+a + b
+a - b
+a * b
+a / b
+a %% b
+a ^ b
+```
+
+## Porównawcze
+
+- Operator równości `==`,
+- Operator negacji równości `!=`,
+- Operatory nierówności `>`, `>=`, `<`, `<=`.
+
+```{r}
+a = 10
+b = 3
+```
+
+```{r}
+a == b
+a != b
+a < b
+a > b
+```
+
+Operatory porównawcze są bardzo przydatne do indeksowania elementów.
+
+```{r}
+vec = c(1, 2, 3, 4, 5)
+vec
+
+# zwraca wartość logiczną dla każdego elementu
+vec >= 3
+
+# zwraca tylko te elementy, które spełniają warunek
+vec[vec >= 3]
+```
+
+## Logiczne
+
+- Koniunkcja `&` (`TRUE`, jeśli obie wartości są prawdziwe),
+- Alternatywa `|` (`TRUE`, jeśli przynajmniej jedna wartość jest prawdziwa),
+- Negacja `!` (odwraca wartość logiczną).
+
+```{r}
+a = 10
+a > 0 & a < 100
+```
+
+```{r}
+TRUE & FALSE
+TRUE | FALSE
+```
+
+# Zadania
+
+1. Oblicz powierzchnię koła o promieniu 10 cm ze wzoru $\pi r^2$. Jako liczby
+$\pi$ użyj stałej `pi`.
+2. Stwórz wektor liczb od 1 do 6. Jeśli liczba jest parzysta, to zamień jej
+wartość na 0.
+3. Obiekt `letters` zawiera litery alfabetu. Wybierz z niego 5 pierwszych liter.
+4. Stwórz ramkę danych składającą się z następujących kolumn:
+  
+    - `ID`: 1, 2, 3, 4, 5
+    - `miasto`: Warszawa, Poznań, Kraków, Toruń, Wrocław
+    - `temperatura`: 22, 18, 17, 22, 18
+
+    Następnie wyświetl tylko te nazwy miast, w których odnotowano temperaturę
+    powyżej 20 stopni Celsjusza.
