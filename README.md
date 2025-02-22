@@ -9,7 +9,7 @@ projektowanie algorytmu, następnie pisanie kodu, a na końcu debugowanie i test
 stworzonej funkcji czy systemu. Dzięki programowaniu możliwe jest tworzenie aplikacji,
 automatyzacja powtarzalnych zadań czy analiza i przetwarzanie danych.
 
-R jest jednym z języków programowania używanym przede wszystkim do analizy i
+**R** jest jednym z języków programowania używanym przede wszystkim do analizy i
 przetwarzania danych oraz tworzenia wizualizacji. Jest preferowany ze względu na niski
 próg wejścia, prostą składnię oraz ogromny ekosystem wspierany przez społeczność.
 
