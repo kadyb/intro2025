@@ -324,7 +324,7 @@ TRUE | FALSE
 1. Oblicz powierzchnię koła o promieniu 10 cm ze wzoru $\pi r^2$. Jako liczby
 $\pi$ użyj stałej `pi`.
 2. Stwórz wektor liczb od 1 do 6. Jeśli liczba jest parzysta, to zamień jej
-wartość na 0.
+wartość na 0 używając operacji modulo.
 3. Obiekt `letters` zawiera litery alfabetu. Wybierz z niego 5 pierwszych liter.
 4. Stwórz ramkę danych składającą się z następujących kolumn:
   
