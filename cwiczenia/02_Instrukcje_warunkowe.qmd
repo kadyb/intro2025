@@ -79,7 +79,7 @@ if (x > 0) {
 ## Instrukcja `else if`
 
 Instrukcja `else if` umożliwia sprawdzenie wielu warunków (jest używana, gdy
-istnieją więcej niż dwa możliwości).
+istnieją więcej niż dwie możliwości).
 
 ```r
 if (warunek_1) {
@@ -105,7 +105,7 @@ if (x > 0) {
 }
 ```
 
-## Zagnieżdzone instrukcje
+## Zagnieżdżone instrukcje
 
 Instrukcje warunkowe można zagnieżdżać, aby obsługiwać bardziej złożony przepływ
 pracy.
