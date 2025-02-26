@@ -106,12 +106,12 @@ vec = c(1, 2, 3, 4, 5)
 vec
 ```
 
-Wektor liczb całkowitych można stworzyć jako sekwencję kolejnych liczb o
-interwale 1 lub -1 używając dwukropka (`:`), gdzie określony jest początek
-i koniec zakresu (`start:koniec`).
+Wektor liczb całkowitych można stworzyć jako ciąg liczbowy (sekwencję) o
+interwale 1 (ciąg rosnący) lub -1 (ciąg malejący) używając dwukropka
+(`:`), gdzie określony jest początek i koniec zakresu (`start:koniec`).
 
 ```{r}
-vec = 1:5
+vec = 1:5 # sekwencja
 vec
 ```
 
