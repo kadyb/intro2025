@@ -1,0 +1,144 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Instrukcje warunkowe"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+# Instrukcja warunkowa
+
+**Instrukcja warunkowa** to podstawowy element programowania, który umożliwia
+podejmowanie decyzji i wykonywanie różnych bloków kodu na podstawie określonych
+warunków.
+
+```{mermaid}
+%%| fig-align: center
+flowchart TD
+    A[Start] --> B{x > 0?}
+    B -->|PRAWDA| C[Wykonaj kod]
+    B -->|FAŁSZ| D[Wykonaj kod]
+    C --> E[Koniec]
+    D --> E[Koniec]
+```
+
+## Instrukcja `if`
+
+Instrukcja `if` sprawdza warunek i wykonuje blok kodu, jeśli jest prawdziwy
+(tj. przyjmuje wartość `TRUE`). Blok kodu powiązany z instrukcją należy zawrzeć
+w nawiasach klamrowych `{}` używając poniższej składni:
+
+```r
+if (warunek) {
+  # kod do wykonania, jeśli warunek jest spełniony
+}
+```
+
+W praktyce wygląda to następująco:
+
+```{r}
+x = 10
+
+if (x > 0) {
+  print("Wartość jest większa od 0!")
+}
+```
+
+## Instrukcja `else`
+
+Instrukcja `else` służy do określenia bloku kodu, który ma zostać wykonany,
+gdy warunek `if` nie jest prawdziwy (tj. przyjmuje wartość `FALSE`).
+
+```r
+if (warunek) {
+  # kod do wykonania, jeśli warunek jest spełniony
+} else {
+  # kod do wykonania, jeśli warunek NIE jest spełniony
+}
+```
+
+Sprawdźmy to na następującym przykładzie:
+
+```{r}
+x = -10
+
+if (x > 0) {
+  print("Wartość jest większa od 0!")
+} else {
+  print("Wartość jest mniejsza bądź równa 0!")
+}
+```
+
+## Instrukcja `else if`
+
+Instrukcja `else if` umożliwia sprawdzenie wielu warunków (jest używana, gdy
+istnieją więcej niż dwa możliwości).
+
+```r
+if (warunek_1) {
+  # kod do wykonania, jeśli pierwszy warunek jest spełniony
+} else if (warunek_2) {
+  # kod do wykonania, jeśli drugi warunek jest spełniony
+} else {
+  # kod do wykonania, jeśli poprzednie warunki nie zostały spełnione
+}
+```
+
+Wykonajmy poniższy przykład:
+
+```{r}
+x = 0
+
+if (x > 0) {
+  print("Wartość jest dodatnia!")
+} else if (x < 0) {
+  print("Wartość jest ujemna!")
+} else {
+  print("Wartość wynosi 0!")
+}
+```
+
+## Zagnieżdzone instrukcje
+
+Instrukcje warunkowe można zagnieżdżać, aby obsługiwać bardziej złożony przepływ
+pracy.
+
+```{r}
+x = 10
+
+if (x > 0) {
+  if (x %% 2 == 0) {
+    print("Liczba jest dodatnia i parzysta!")
+  } else {
+    print("Liczba jest dodatnia i nieparzysta!")
+  }
+} else {
+  print("Liczba nie jest dodatnia!")
+}
+```
+
+Zauważ, że nadmiernie zagnieżdżone lub rozbudowane instrukcje warunkowe mogą
+stać się trudne do odczytania i zrozumienia.
+
+# Zadanie
+
+1. Wyświetl studentowi odpowiednią oceną na podstawie uzyskanego wyniku z testu.
+Skala ocen: bardzo dobry (100 - 90), dobry (89 - 80), dostateczny (79 - 70),
+dopuszczający (poniżej 70).
+
+2. Sprawdź czy dany rok jest przestępny. Do rozwiązania należy wykorzystać
+operatory logiczne. Rok jest przestępny, gdy jest podzielny przez 4 i nie jest
+podzielny przez 100 lub jest podzielny przez 400. Przykładowo lata 2000 i 2004
+były przestępne, natomiast lata 1990, 2010 czy 2021 nie były.
+
+3. Na podstawie podanych długości boków trójkąta, napisz jaki to rodzaj
+(tj. równoboczny, równoramienny czy różnoboczny). Zacznij od warunku
+sprawdzającego czy długość podanych boków jest prawidłowa, tj. suma dwóch
+dowolnych boków musi być większa od trzeciego boku.
