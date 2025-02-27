@@ -1,0 +1,145 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Pętla"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+# Pętla
+
+**Pętla** to podstawowy element programowania, który pozwala na wielokrotne
+powtarzanie bloku kodu przez określoną liczbę razy lub do momentu spełnienia
+określonego warunku. Wykorzystanie pętli jest kluczowe dla automatyzacji
+powtarzających się zadań i iterowaniu po strukturach danych.
+
+Pamiętaj, że R umożliwia przeprowadzanie zwektoryzowanych operacji, tzn.
+operacje można wykonać bezpośrednio dla wszystkich elementów określonej
+struktury danych bez użycia pętli. Często operacje wektorowe są wydajniejsze
+niż pętle w R.
+
+## Pętla `for`
+
+Pętla `for` używana jest do iterowania po sekwencjach, takich jak wektor, lista
+czy zakres liczbowy, gdy znana jest liczba iteracji z góry.
+
+```r
+for (iterator in sekwencja) {
+  # kod do wykonania w każdej iteracji
+}
+```
+
+Zobaczymy zastosowanie prostej pętli `for`, która wyświetli nam liczby od 1 do 4:
+
+```{r}
+for (i in 1:4) {
+  print(i)
+}
+```
+
+W kolejnym przykładzie sprawdźmy pętlę, która odwoła się do każdego elementu
+zdefiniowanego wektora i przemnoży ich wartość przez 2.
+
+```{r}
+liczby = c(10, 20, 30, 40)
+
+for (l in liczby) {
+  print(l * 2)
+}
+```
+
+Pętle oczywiście mogą być zagnieżdżone. W następnym przykładzie wyświetlimy
+numer wiersza i kolumny macierzy oraz wartość komórki.
+
+```{r}
+mat = matrix(1:4, nrow = 2, ncol = 2)
+mat
+```
+
+```{r}
+for (i in 1:2) {
+  for (j in 1:2) {
+    print(paste("Wiersz:", i, "Kolumna:", j, "Wartość:", mat[i, j]))
+  }
+}
+```
+
+Powyższa struktura używana jest przede wszystkim do przetwarzania danych
+rastrowych (iteruje po każdej komórce rastra).
+
+## Pętla `while`
+
+Pętla `while` powtarza blok kodu tak długo, jak określony warunek jest spełniony
+(`TRUE`). Jest przydatna, gdy liczba iteracji nie jest znana z góry.
+
+```r
+while (warunek) {
+  # kod do wykonania w każdej iteracji
+}
+```
+
+Zobaczymy działanie tej pętli na przykładzie wyświetlania liczb od 1 do 4:
+
+```{r}
+i = 1 # ustawienie licznika
+
+while (i <= 4) {
+  print(i)
+  i = i + 1 # zwiększ wartość licznika
+}
+```
+
+Niezmiernie istotne jest upewnienie się, że ostatecznie warunek przyjmie wartość
+`FALSE`. W przeciwnym razie, pętla `while` będzie działać w nieskończoność!
+
+## Kontrola pętli
+
+Wykonywanie pętli można kontrolować za pomocą dwóch instrukcji:
+
+- `break` -- natychmiastowo kończy działanie pętli.
+- `next` -- pomija bieżącą iterację i przechodzi do następnej.
+
+```{r}
+# zatrzymaj pętlę, gdy wartość wynosi 3
+for (i in 1:5) {
+  if (i == 3) {
+    print("Pętla została zatrzymana!")
+    break
+  }
+  print(paste("i =", i))
+}
+```
+
+```{r}
+# pomiń wyświetlanie liczb parzystych
+for (i in 1:5) {
+  if (i %% 2 == 0) {
+    next
+  }
+  print(i)
+}
+```
+
+# Zadanie
+
+1. Napisz pętlę, która obliczy sumę liczb od 1 do 10.
+
+2. Napisz pętlę, która wyświetli tylko liczby parzyste z przedziału od 1 do 10.
+
+3. Dany jest wektor składający się z liczb: `8, 3, 12, 5, 17, 2`. Napisz pętlę,
+która zwróci wartość maksymalną oraz jej indeks.
+
+4. Napisz pętlę symulującą rzut monetą 100 razy. Po zakończeniu działania wyświetl
+ile razy wypadł orzeł (1), a ile reszka (2). Do symulacji wykorzystaj funkcję
+`sample(1:2, size = 1)`.
+
+5. Napisz pętlę symulującą rzut kostką, dopóki nie wypadnie wartość 6. Wyświetl,
+za którym razem udało się wylosować tę liczbę. Do symulacji wykorzystaj funkcję
+`sample(1:6, size = 1)`.
