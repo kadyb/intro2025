@@ -329,6 +329,21 @@ TRUE & FALSE
 TRUE | FALSE
 ```
 
+Operatory logiczne mogą być pojedyncze (`&`, `|`) lub podwójne (`&&`, `||`).
+Pojedyncze działają element po elemencie wektorów, podczas gdy podwójne działają
+dla wektorów składających się wyłącznie z jednego elementu (tzw. skalarów).
+Dodatkowo, jeśli pierwszy warunek jest wystarczający do określenia wyniku,
+to nie jest wykonywana dalsza ewaluacja.
+
+```{r}
+c(TRUE, FALSE) & c(TRUE, TRUE)
+```
+
+Operatory pojedyncze stosuje się najczęściej do przetwarzania danych (np.
+filtrowania ramek danych), natomiast operatory podwójne wykorzystuje się
+w przypadku instrukcji warunkowych, gdzie wymagana jest jednoznaczna wartość
+logiczna.
+
 # Zadania
 
 1. Oblicz powierzchnię koła o promieniu 10 cm ze wzoru $\pi r^2$. Jako liczby
