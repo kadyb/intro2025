@@ -131,7 +131,8 @@ stać się trudne do odczytania i zrozumienia.
 
 1. Wyświetl studentowi odpowiednią oceną na podstawie uzyskanego wyniku z testu.
 Skala ocen: bardzo dobry (100 - 90), dobry (89 - 80), dostateczny (79 - 70),
-dopuszczający (poniżej 70).
+dopuszczający (poniżej 70). Upewnij się, że wprowadzona wartość jest
+z prawidłowego zakresu od 0 do 100 punktów.
 
 2. Sprawdź czy dany rok jest przestępny. Do rozwiązania należy wykorzystać
 operatory logiczne. Rok jest przestępny, gdy jest podzielny przez 4 i nie jest
