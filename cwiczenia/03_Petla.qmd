@@ -134,7 +134,8 @@ for (i in 1:5) {
 2. Napisz pętlę, która wyświetli tylko liczby parzyste z przedziału od 1 do 10.
 
 3. Dany jest wektor składający się z liczb: `8, 3, 12, 5, 17, 2`. Napisz pętlę,
-która zwróci wartość maksymalną oraz jej indeks.
+która zwróci wartość maksymalną oraz jej indeks. Do sprawdzenia długości
+(liczby elementów) wektora użyj funkcji `length()`.
 
 4. Napisz pętlę symulującą rzut monetą 100 razy. Po zakończeniu działania wyświetl
 ile razy wypadł orzeł (1), a ile reszka (2). Do symulacji wykorzystaj funkcję
