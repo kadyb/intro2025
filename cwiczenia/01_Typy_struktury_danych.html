@@ -3650,9 +3650,10 @@ $czy_student
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p>Operatory logiczne mogą być pojedyncze (<code>&amp;</code>, <code>|</code>) lub podwójne (<code>&amp;&amp;</code>, <code>||</code>). Pojedyncze działają element po elemencie wektorów, podczas gdy podwójne działają dla wektorów składających się wyłącznie z jednego elementu (tzw. skalarów). Dodatkowo, jeśli pierwszy warunek jest wystarczający do określenia wyniku, to nie jest wykonywana dalsza ewaluacja.</p>
+<p>Operatory logiczne mogą być pojedyncze (<code>&amp;</code>, <code>|</code>) lub podwójne (<code>&amp;&amp;</code>, <code>||</code>). Pojedyncze działają element po elemencie wektorów, podczas gdy podwójne działają dla wektorów składających się wyłącznie z jednego elementu (tzw. skalarów). Dodatkowo, jeśli pierwszy warunek jest wystarczający do określenia wyniku, to nie jest wykonywana ewaluacja kolejnych warunków.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">&amp;</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zwraca dwie wartości logiczne</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">&amp;</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE</code></pre>
 </div>

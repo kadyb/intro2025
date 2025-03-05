@@ -333,9 +333,10 @@ Operatory logiczne mogą być pojedyncze (`&`, `|`) lub podwójne (`&&`, `||`).
 Pojedyncze działają element po elemencie wektorów, podczas gdy podwójne działają
 dla wektorów składających się wyłącznie z jednego elementu (tzw. skalarów).
 Dodatkowo, jeśli pierwszy warunek jest wystarczający do określenia wyniku,
-to nie jest wykonywana dalsza ewaluacja.
+to nie jest wykonywana ewaluacja kolejnych warunków.
 
 ```{r}
+# zwraca dwie wartości logiczne
 c(TRUE, FALSE) & c(TRUE, TRUE)
 ```
 
