@@ -3141,14 +3141,14 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="organizacja-kodu">Organizacja kodu</h2>
 <ol type="1">
 <li>Funkcja musi mieć dokładnie zdefiniowany cel działania (zasada jednej odpowiedzialności). Unikaj tworzenia funkcji, które próbują wykonać zbyt wiele różnych zadań. Jeśli funkcja staje się zbyt złożona, należy podzielić ją na mniejsze komponenty.</li>
-<li>Nazwa funkcji oraz argumentów musi być jasna dla użytkownika. Zaleca się także ograniczenie liczby argumentów żeby funkcja nie była zbyt skomplikowana. Dla ułatwienia można także określić wartości domyślne argumentów.</li>
-<li>Konsekwenty styl kodowania, np. <a href="https://style.tidyverse.org/">styl tidyverse</a>.</li>
+<li>Nazwa funkcji oraz argumentów musi być jasna dla użytkownika. Zaleca się także ograniczenie liczby argumentów, żeby funkcja nie była zbyt skomplikowana. Dla ułatwienia można także określić wartości domyślne argumentów.</li>
+<li>Konsekwentny styl kodowania, np. <a href="https://style.tidyverse.org/">styl tidyverse</a>.</li>
 </ol>
 </section>
 <section id="dokumentacja" class="level2">
 <h2 class="anchored" data-anchor-id="dokumentacja">Dokumentacja</h2>
 <p>Dokumentacja jest niezbędna do użytkowania oprogramowania. Proste podejście opiera się o wykorzystanie bezpośrednich komentarzy (<code>#</code>) w kodzie do jego wyjaśnienia.</p>
-<p>Kompleksowe podejście polega na stowrzeniu formalnej dokumentacji używając pakietu <a href="https://roxygen2.r-lib.org/">roxygen2</a>, który umożliwia krótki opis celu funkcji, jej parametrów, zwracanych wartości oraz szczegółów dotyczących jej działania za pomocą odpowiednich słów kluczowych, np. <code>@title</code>, <code>@param</code> czy <code>@return</code>. Finalnie generowana jest dokumentacja dla całego pakietu w formacie <code>.Rd</code>.</p>
+<p>Kompleksowe podejście polega na stworzeniu formalnej dokumentacji używając pakietu <a href="https://roxygen2.r-lib.org/">roxygen2</a>, który umożliwia krótki opis celu funkcji, jej parametrów, zwracanych wartości oraz szczegółów dotyczących jej działania za pomocą odpowiednich słów kluczowych, np. <code>@title</code>, <code>@param</code> czy <code>@return</code>. Finalnie generowana jest dokumentacja dla całego pakietu w formacie <code>.Rd</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @title</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Oblicza pole prostokąta.</span></span>
@@ -3170,7 +3170,7 @@ vertical-align: -.125em;
 <section id="walidacja-wejścia" class="level2">
 <h2 class="anchored" data-anchor-id="walidacja-wejścia">Walidacja wejścia</h2>
 <p>Dobrą praktyką jest sprawdzenie parametrów wejściowych podanych przez użytkownika, aby upewnić się, że są one prawidłowego typu i mieszczą się w spodziewanym zakresie, dzięki temu funkcja jest stabilniejsza i zapobiega potencjalnym błędom. Za pomocą funkcji <code>stop()</code> można zwrócić błąd, jeśli dane wejściowe nie są prawidłowe.</p>
-<p>Zaleca się, aby wykrywać nieprawidłowoścu tak szybko, jak to możliwe, zamiast dopuszczać do ich rozprzestrzeniania się.</p>
+<p>Zaleca się, aby wykrywać nieprawidłowości tak szybko, jak to możliwe, zamiast dopuszczać do ich rozprzestrzeniania się.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>srednia <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sprawdź typ</span></span>
@@ -3208,7 +3208,7 @@ vertical-align: -.125em;
 </section>
 <section id="testy" class="level2">
 <h2 class="anchored" data-anchor-id="testy">Testy</h2>
-<p>Obligatoryjnie należy przetestować funkcję za pomocą różnych danych wejściowych, aby upewnić się, że działa zgodnie z oczekiwaniami i zwraca prawidłowy wynik. W tym celu można użyć prostych testów opratych na instrukcjach warunkowych lub dedykowanych pakietów, np. <a href="https://testthat.r-lib.org/">testthat</a>. Testowanie ma kluczowe znaczenie dla wczesnego wykrywania błędów i zapewnienia poprawności wraz z rozwojem kodu.</p>
+<p>Obligatoryjnie należy przetestować funkcję za pomocą różnych danych wejściowych, aby upewnić się, że działa zgodnie z oczekiwaniami i zwraca prawidłowy wynik. W tym celu można użyć prostych testów opartych na instrukcjach warunkowych lub dedykowanych pakietów, np. <a href="https://testthat.r-lib.org/">testthat</a>. Testowanie ma kluczowe znaczenie dla wczesnego wykrywania błędów i zapewnienia poprawności wraz z rozwojem kodu.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">srednia</span>(<span class="dv">1</span>) <span class="sc">!=</span> <span class="dv">1</span>) <span class="fu">print</span>(<span class="st">&quot;Nieprawidłowy wynik&quot;</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">srednia</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">!=</span> <span class="dv">3</span>) <span class="fu">print</span>(<span class="st">&quot;Nieprawidłowy wynik&quot;</span>)</span>
@@ -3219,7 +3219,7 @@ vertical-align: -.125em;
 <section id="zadanie" class="level1">
 <h1>Zadanie</h1>
 <ol type="1">
-<li>Napisz funkcję, która umożliwi <a href="https://en.wikipedia.org/wiki/Feature_scaling#Methods">normalizację</a> wartości wektora liczbowego za pomocą średniej arytmetycznej lub wartości Z-score. Uzględnij dokumentację, walidację parametrów wejściowych, testy oraz dobre praktyki programistyczne.</li>
+<li>Napisz funkcję, która umożliwi <a href="https://en.wikipedia.org/wiki/Feature_scaling#Methods">normalizację</a> wartości wektora liczbowego za pomocą średniej arytmetycznej lub wartości Z-score. Uwzględnij dokumentację, walidację parametrów wejściowych, testy oraz dobre praktyki programistyczne.</li>
 </ol>
 </section>
 

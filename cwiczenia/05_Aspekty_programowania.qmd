@@ -46,9 +46,9 @@ odpowiedzialności). Unikaj tworzenia funkcji, które próbują wykonać zbyt wi
 różnych zadań. Jeśli funkcja staje się zbyt złożona, należy podzielić ją na
 mniejsze komponenty.
 2. Nazwa funkcji oraz argumentów musi być jasna dla użytkownika. Zaleca
-się także ograniczenie liczby argumentów żeby funkcja nie była zbyt skomplikowana.
+się także ograniczenie liczby argumentów, żeby funkcja nie była zbyt skomplikowana.
 Dla ułatwienia można także określić wartości domyślne argumentów.
-3. Konsekwenty styl kodowania, np. [styl tidyverse](https://style.tidyverse.org/).
+3. Konsekwentny styl kodowania, np. [styl tidyverse](https://style.tidyverse.org/).
 
 ## Dokumentacja
 
@@ -56,7 +56,7 @@ Dokumentacja jest niezbędna do użytkowania oprogramowania. Proste podejście
 opiera się o wykorzystanie bezpośrednich komentarzy (`#`) w kodzie do jego
 wyjaśnienia.
 
-Kompleksowe podejście polega na stowrzeniu formalnej dokumentacji używając
+Kompleksowe podejście polega na stworzeniu formalnej dokumentacji używając
 pakietu [roxygen2](https://roxygen2.r-lib.org/), który umożliwia krótki opis
 celu funkcji, jej parametrów, zwracanych wartości oraz szczegółów dotyczących
 jej działania za pomocą odpowiednich słów kluczowych, np. `@title`, `@param`
@@ -88,7 +88,7 @@ aby upewnić się, że są one prawidłowego typu i mieszczą się w spodziewany
 dzięki temu funkcja jest stabilniejsza i zapobiega potencjalnym błędom. Za pomocą
 funkcji `stop()` można zwrócić błąd, jeśli dane wejściowe nie są prawidłowe.
 
-Zaleca się, aby wykrywać nieprawidłowoścu tak szybko, jak to możliwe, zamiast
+Zaleca się, aby wykrywać nieprawidłowości tak szybko, jak to możliwe, zamiast
 dopuszczać do ich rozprzestrzeniania się.
 
 ```{r}
@@ -137,7 +137,7 @@ może być nieprawidłowy.
 
 Obligatoryjnie należy przetestować funkcję za pomocą różnych danych wejściowych,
 aby upewnić się, że działa zgodnie z oczekiwaniami i zwraca prawidłowy wynik.
-W tym celu można użyć prostych testów opratych na instrukcjach warunkowych lub
+W tym celu można użyć prostych testów opartych na instrukcjach warunkowych lub
 dedykowanych pakietów, np. [testthat](https://testthat.r-lib.org/). Testowanie
 ma kluczowe znaczenie dla wczesnego wykrywania błędów i zapewnienia poprawności
 wraz z rozwojem kodu.
@@ -152,5 +152,5 @@ if (srednia(c(-20, -10)) != -15) print("Nieprawidłowy wynik")
 
 1. Napisz funkcję, która umożliwi [normalizację](https://en.wikipedia.org/wiki/Feature_scaling#Methods)
 wartości wektora liczbowego za pomocą średniej arytmetycznej lub wartości Z-score.
-Uzględnij dokumentację, walidację parametrów wejściowych, testy oraz dobre
+Uwzględnij dokumentację, walidację parametrów wejściowych, testy oraz dobre
 praktyki programistyczne.
