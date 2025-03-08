@@ -1,0 +1,249 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Funkcja"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+# Funkcja
+
+**Funkcja** to samodzielny blok kodu, który wykonuje określone zadanie.
+Funkcje pomagają przede wszystkim w organizacji kodu, czyniąc go modułowym
+i wielokrotnego użytku, dzięki czemu jest czytelniejszy i łatwiejszy do
+zrozumienia. 
+
+Do stworzenia funkcji używa się słowa kluczowego `function()` i następujących
+elementów:
+
+- nazwa funkcji -- nazwa, która spowoduje wywołanie funkcji. Powinna
+odzwierciedlać to, co funkcja robi.
+- argumenty -- dane wejściowe funkcji określone w okrągłych nawiasach `()`.
+Funkcja może mieć zero, jeden lub wiele argumentów.
+- ciało funkcji -- blok kodu w nawiasach klamrowych `{}`, który definiuje
+działanie funkcji. Może zawierać obliczenia, pętle, instrukcje warunkowe i
+wywołania innych funkcji.
+- wynik funkcji -- instrukcja `return()` powoduje zakończenie dziłania funkcji
+i zwrócenie jej wyniku. Jeśli nie został określony, to funkcja zwróci wartość
+ostatniego wyrażenia obliczonego w ciele funkcji (tzw. niejawny `return`).
+Ponadto, aby zwrócić wiele wartości, zazwyczaj łączy się je w listę.
+
+Składnia prezentuje się w następujący sposób:
+
+```r
+nazwa_funkcji = function(argument1, argument2) {
+  # kod do wykonania (ciało funkcji)
+  return(wynik)
+}
+```
+
+Napiszmy prostą funkcję, która obliczy pole prostokąta.
+
+```{r}
+pole_prostokata = function(a, b) {
+  P = a * b
+  return(P)
+}
+```
+
+Aby użyć funkcji, należy ją wywołać i zdefiniować wymagane argumenty.
+Przyjmijmy, że długość boku `a` wynosi 10 cm, a wysokość boku `b` 5 cm. Wtedy:
+
+```{r}
+pole_prostokata(a = 10, b = 5)
+```
+
+Funkcja może zwracać wiele wartości. Zobaczmy to na przykładzie obliczania
+statystyk opisowych wektora numerycznego. Poszczególne statystyki zostaną
+zwrócone jako lista.
+
+```{r}
+statysytki = function(x) {
+  return(list(
+    min = min(x),
+    srednia = mean(x),
+    mediana = median(x),
+    maks = max(x)
+  ))
+}
+```
+
+```{r}
+statysytki(1:10)
+```
+
+# Argumenty
+
+## Pozycyjne
+
+Z założenia kolejność podawanych argumentów jest zgodna z kolejnością w definicji
+funkcji.
+
+```{r}
+potega = function(x, y) {
+  return(x^y)
+}
+```
+
+```{r}
+potega(x = 2, y = 3)
+potega(2, 3)
+```
+
+`potega(3, 2)` to zupełnie inne działanie niż `potega(2, 3)` wykorzystując
+argumenty pozycyjne!
+
+## Nazwane
+
+Podczas wywoływania funkcji można jawnie określić nazwy argumentów, co pozwala
+na podanie ich w dowolnej kolejności.
+
+```{r}
+potega(x = 2, y = 3)
+potega(y = 3, x = 2)
+```
+
+## Domyślne
+
+W definicji funkcji można nadać argumentom wartości domyślne. Jeśli użytkownik
+nie poda wartości dla tego argumentu, to zostanie użyta wartość domyślna.
+
+```{r}
+# argument y ma określoną domyślną wartość
+potega = function(x, y = 2) {
+  return(x^y)
+}
+```
+
+```{r}
+potega(2)
+potega(2, 3)
+```
+
+## Wielokropek
+
+Za pomocą wielokropka `...` można zdefiniować funkcję, która przyjmuje zmienną
+liczbę argumentów, co jest to przydatne w sytuacji, gdy nie wiadomo, ile
+argumentów zostanie przekazanych.
+
+```{r}
+suma = function(...) {
+  args = list(...)
+  s = sum(unlist(args))
+  return(s)
+}
+```
+
+```{r}
+suma(1, 2, 3, 4, 5)
+```
+
+Innym istotnym zastosowaniem wielokropka `...` jest przekazywanie argumentów
+do innej (wewnętrznej) funkcji wywoływanej w ramach bieżącej funkcji. Jest to
+szczególnie przydatne do pisania funkcji rozszerzających funkcjonalności
+istniejących funkcji. Zobaczymy działanie na przykładzie prostej funkcji,
+która wyświetli tekst z wybranym separatorem między wyrazami.
+
+```{r}
+wyswietl_tekst = function(...) {
+  tekst = paste(...)
+  return(tekst)
+}
+```
+
+```{r}
+# domyślny separator
+wyswietl_tekst("Hello", "World")
+wyswietl_tekst("Hello", "World", sep = "-")
+```
+
+Zauważ, że w definicji funkcji `wyswietl_tekst()` nie zdefiniowaliśmy argumentu
+`sep`. W rzeczywistości, pochodzi on z funkcji `paste()`.
+
+# Obsługa wyjątków
+
+Obsługa wyjątków pozwala zarządzać nieoczekiwanymi problemami podczas
+wykonywania kodu, zapewniając, że program może z powodzeniem obsługiwać błędy
+i ostrzeżenia. Pozwala to przewidywać potencjalne problemy i odpowiednio je
+rozwiązać bez przerywania działania programu. Przyczyny błędów mogą być
+zróżnicowane, np. nieprawidłowy format danych wejściowych, brak pliku w
+określonej lokalizacji, dzielenie przez zero, itd.
+
+Funkcja może zwrócić trzy stany:
+
+- błąd (*error*) -- sytuacja krytyczna, która zatrzymuje wykonywanie programu
+(np. próba uzyskania dostępu do nieistniejącego obiektu).
+- ostrzeżenie (*warning*) -- potencjalny problem, ale nie zatrzymuje wykonywania
+programu (np. wykonywanie nieprawidłowych obliczeń, które zwracają `NaN`
+(*Not a Number*)).
+- komunikat (*message*) -- informacja, która nie wpływa na wykonanie programu
+(np. aktualizacja postępu).
+
+Funkcja `try()` jest najprostszym sposobem obsługi błędów w R. Próbuje wykonać
+wyrażenie i jeśli wystąpi błąd (*error*), to nie zatrzymuje całego skryptu, ale
+zwraca obiekt klasy `try-error`. Następnie, możemy sprawdzić czy wystąpił błąd
+i podjąć odpowiednie działania. Argument `silent = TRUE` wstrzymuje wyświetlanie
+komunikatu o błędzie na konsoli (błąd jest nadal przechwytywany w zwracanym
+obiekcie). 
+
+```{r}
+result = try(sqrt("tekst"), silent = TRUE)
+
+if (inherits(result, "try-error")) {
+  cat("Wystąpił błąd:", "\n", result)
+} else {
+  result
+}
+```
+
+Do bardziej zaawansowanej kontroli służy funkcja `tryCatch()`, która obsługuje
+zaróno błędy i ostrzeżenia. Dodatkowo, na końcu funkcji można zdefiniować
+blok kodu `finally`, który jest zawsze wykonywany, niezależnie od tego, czy
+wystąpił błąd lub ostrzeżenie. Jest przydatny do zadań, które muszą zostać
+wykonane niezależnie od powodzenia działania programu (np. zamykanie połączenia
+do pliku czy bazy danych).
+
+```{r}
+pierwiastek = function(x) {
+  tryCatch(
+    expr = {
+      return(sqrt(x)) # testowana funkcja
+    },
+    error = function(e) {
+      message("Funkcja zwróciła błąd!")
+      return(NULL)
+    },
+    warning = function(w) {
+      message("Funkcja zwróciła ostrzeżenie!")
+      return(NULL)
+    }
+    )
+}
+```
+
+Sprawdźmy teraz działanie funkcji `pierwiastek()` w zależności od rodzaju
+danych wejściowych.
+
+```{r}
+pierwiastek(25)
+pierwiastek(-10)
+pierwiastek("tekst")
+```
+
+# Zadanie
+
+1. Napisz funkcję, która sprawdzi, czy liczba jest parzysta lub nieparzysta.
+2. Napisz funkcję, która zamieni stopnie Celsjusza na Farenhaita oraz wykona
+operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.
+3. Dany jest wektor `1, 2, 3, NA, 5, 6, NA, 8, 9`. Napisz funkcję, która zastąpi
+brakujące wartości (`NA`) średnią arytmetyczną (domyślnie) lub wartością
+zdefiniowaną przez użytkownika. Do wykrycia brakujących wartości wykorzystaj
+funkcję `is.na()`.
+4. Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.
