@@ -30,6 +30,7 @@ Aplikacja dostępna jest na różnych platformach do pobrania w [tym miejscu](ht
 1. [Typy i struktury danych](https://kadyb.github.io/intro2025/cwiczenia/01_Typy_struktury_danych.html)
 2. [Instrukcje warunkowe](https://kadyb.github.io/intro2025/cwiczenia/02_Instrukcje_warunkowe.html)
 3. [Pętla](https://kadyb.github.io/intro2025/cwiczenia/03_Petla.html)
+4. [Funkcja](https://kadyb.github.io/intro2025/cwiczenia/04_Funkcja.html)
 
 # Materiały dodatkowe
 
