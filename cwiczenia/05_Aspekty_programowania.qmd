@@ -1,0 +1,156 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Jak napisać dobrą funkcję?"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+# Aspekty programowania
+
+Prawo Murphy’ego głosi: "*Wszystko, co może pójść źle, pójdzie źle*". W tworzeniu
+oprogramowania przekłada się to na kilka kluczowych wniosków, które oznaczają,
+że błędy są nieuniknione, użytkownicy będą robić rzeczy, których się nie
+spodziewamy oraz kod, który działa na naszym systemie, w innym środowisku
+nie będzie działał prawidłowo (albo wcale).
+
+Odpowiedzią na te kwestie jest **programowanie defensywne**, które przewiduje
+potencjalne problemy i stosuje odpowiednie środki zapobiegawcze, aby zagwarantować,
+że oprogramowanie zachowa się przewidywalnie.
+
+Napisanie funkcji, która będzie wykonywała określone zadanie jest relatywnie
+proste. Jednakże, napisanie **dobrej** funkcji wymaga zaplanowania i
+przestrzegania odpowiednich praktyk programistycznych, dzięki czemu można
+znacznie poprawić czytelność, łatwość utrzymania oraz umożliwić wykorzystanie
+kodu przez inne osoby. 
+
+Najważniejsze aspekty, które należy uwzględnić:
+
+- Organizacja kodu,
+- Dokumentacja,
+- Walidacja wejścia,
+- Obsługa błędów,
+- Testy.
+
+## Organizacja kodu
+
+1. Funkcja musi mieć dokładnie zdefiniowany cel działania (zasada jednej
+odpowiedzialności). Unikaj tworzenia funkcji, które próbują wykonać zbyt wiele
+różnych zadań. Jeśli funkcja staje się zbyt złożona, należy podzielić ją na
+mniejsze komponenty.
+2. Nazwa funkcji oraz argumentów musi być jasna dla użytkownika. Zaleca
+się także ograniczenie liczby argumentów żeby funkcja nie była zbyt skomplikowana.
+Dla ułatwienia można także określić wartości domyślne argumentów.
+3. Konsekwenty styl kodowania, np. [styl tidyverse](https://style.tidyverse.org/).
+
+## Dokumentacja
+
+Dokumentacja jest niezbędna do użytkowania oprogramowania. Proste podejście
+opiera się o wykorzystanie bezpośrednich komentarzy (`#`) w kodzie do jego
+wyjaśnienia.
+
+Kompleksowe podejście polega na stowrzeniu formalnej dokumentacji używając
+pakietu [roxygen2](https://roxygen2.r-lib.org/), który umożliwia krótki opis
+celu funkcji, jej parametrów, zwracanych wartości oraz szczegółów dotyczących
+jej działania za pomocą odpowiednich słów kluczowych, np. `@title`, `@param`
+czy `@return`. Finalnie generowana jest dokumentacja dla całego pakietu
+w formacie `.Rd`.
+
+```{r}
+#' @title
+#' Oblicza pole prostokąta.
+#'
+#' @param a Długość boku prostokąta (typ liczbowy).
+#' @param b Wysokość boku prostokąta (typ liczbowy).
+#'
+#' @return Pole prostokąta (typ liczbowy).
+#'
+#' @examples
+#' calculate_area(5, 10)  # zwraca 50
+
+pole_prostokata = function(a, b) {
+  P = a * b
+  return(P)
+}
+```
+
+## Walidacja wejścia
+
+Dobrą praktyką jest sprawdzenie parametrów wejściowych podanych przez użytkownika,
+aby upewnić się, że są one prawidłowego typu i mieszczą się w spodziewanym zakresie,
+dzięki temu funkcja jest stabilniejsza i zapobiega potencjalnym błędom. Za pomocą
+funkcji `stop()` można zwrócić błąd, jeśli dane wejściowe nie są prawidłowe.
+
+Zaleca się, aby wykrywać nieprawidłowoścu tak szybko, jak to możliwe, zamiast
+dopuszczać do ich rozprzestrzeniania się.
+
+```{r}
+srednia = function(x) {
+  # sprawdź typ
+  if (!is.numeric(x)) {
+    stop("Wektor musi być typu numerycznego!")
+  }
+  # sprawdź liczbę elementów
+  if (length(x) == 0) {
+    stop("Wektor nie zawiera żadnych elementów!")
+  }
+  return(mean(x))
+}
+```
+
+## Obsługa błędów
+
+Zastosowanie `tryCatch()` umożliwia wyłapanie wszelkich błędów, które mogą
+spowodować nieoczekiwane przerwanie wykonywania funkcji. Ponadto, warto wyświetlić
+komunikaty o błędach, aby pomóc użytkownikowi zdiagnozować i rozwiązać problem.
+
+```{r}
+skalowanie = function(x, sciezka_do_pliku) {
+  wynik = (x - min(x)) / (max(x) - min(x))
+  
+  tryCatch(
+    expr = {
+      write.csv(wynik, sciezka_do_pliku)
+      return("Plik został zapisany!")
+    },
+    error = function(e) {
+      message("Błąd podczas zapisywania pliku: ", e$message)
+      return(wynik) # wynik zostanie zwrócony jako obiekt
+    }
+  )
+}
+```
+
+Uwaga! Ukrywanie błędów może doprowadzić do trudności związanych z ich wykryciem.
+Przykładowo, funkcja zwraca wartość domyślną podczas napotkania błędu
+bez wskazania go bezpośrednio. Użytkownik nie jest wtedy świadomy, że wynik
+może być nieprawidłowy.
+
+## Testy
+
+Obligatoryjnie należy przetestować funkcję za pomocą różnych danych wejściowych,
+aby upewnić się, że działa zgodnie z oczekiwaniami i zwraca prawidłowy wynik.
+W tym celu można użyć prostych testów opratych na instrukcjach warunkowych lub
+dedykowanych pakietów, np. [testthat](https://testthat.r-lib.org/). Testowanie
+ma kluczowe znaczenie dla wczesnego wykrywania błędów i zapewnienia poprawności
+wraz z rozwojem kodu.
+
+```{r}
+if (srednia(1) != 1) print("Nieprawidłowy wynik")
+if (srednia(1:5) != 3) print("Nieprawidłowy wynik")
+if (srednia(c(-20, -10)) != -15) print("Nieprawidłowy wynik")
+```
+
+# Zadanie
+
+1. Napisz funkcję, która umożliwi [normalizację](https://en.wikipedia.org/wiki/Feature_scaling#Methods)
+wartości wektora liczbowego za pomocą średniej arytmetycznej lub wartości Z-score.
+Uzględnij dokumentację, walidację parametrów wejściowych, testy oraz dobre
+praktyki programistyczne.
