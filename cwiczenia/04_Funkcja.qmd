@@ -30,7 +30,7 @@ Funkcja może mieć zero, jeden lub wiele argumentów.
 - ciało funkcji -- blok kodu w nawiasach klamrowych `{}`, który definiuje
 działanie funkcji. Może zawierać obliczenia, pętle, instrukcje warunkowe i
 wywołania innych funkcji.
-- wynik funkcji -- instrukcja `return()` powoduje zakończenie dziłania funkcji
+- wynik funkcji -- instrukcja `return()` powoduje zakończenie działania funkcji
 i zwrócenie jej wyniku. Jeśli nie został określony, to funkcja zwróci wartość
 ostatniego wyrażenia obliczonego w ciele funkcji (tzw. niejawny `return`).
 Ponadto, aby zwrócić wiele wartości, zazwyczaj łączy się je w listę.
@@ -65,7 +65,7 @@ statystyk opisowych wektora numerycznego. Poszczególne statystyki zostaną
 zwrócone jako lista.
 
 ```{r}
-statysytki = function(x) {
+statystyki = function(x) {
   return(list(
     min = min(x),
     srednia = mean(x),
@@ -76,7 +76,7 @@ statysytki = function(x) {
 ```
 
 ```{r}
-statysytki(1:10)
+statystyki(1:10)
 ```
 
 # Argumenty
@@ -194,17 +194,20 @@ komunikatu o błędzie na konsoli (błąd jest nadal przechwytywany w zwracanym
 obiekcie). 
 
 ```{r}
-result = try(sqrt("tekst"), silent = TRUE)
+wynik = try(sqrt("tekst"), silent = TRUE)
+class(wynik)
+```
 
-if (inherits(result, "try-error")) {
-  cat("Wystąpił błąd:", "\n", result)
+```{r}
+if (inherits(wynik, "try-error")) {
+  cat("Wystąpił błąd:", "\n", wynik)
 } else {
-  result
+  wynik
 }
 ```
 
 Do bardziej zaawansowanej kontroli służy funkcja `tryCatch()`, która obsługuje
-zaróno błędy i ostrzeżenia. Dodatkowo, na końcu funkcji można zdefiniować
+zarówno błędy i ostrzeżenia. Dodatkowo, na końcu funkcji można zdefiniować
 blok kodu `finally`, który jest zawsze wykonywany, niezależnie od tego, czy
 wystąpił błąd lub ostrzeżenie. Jest przydatny do zadań, które muszą zostać
 wykonane niezależnie od powodzenia działania programu (np. zamykanie połączenia
@@ -240,7 +243,7 @@ pierwiastek("tekst")
 # Zadanie
 
 1. Napisz funkcję, która sprawdzi, czy liczba jest parzysta lub nieparzysta.
-2. Napisz funkcję, która zamieni stopnie Celsjusza na Farenhaita oraz wykona
+2. Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona
 operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.
 3. Dany jest wektor `1, 2, 3, NA, 5, 6, NA, 8, 9`. Napisz funkcję, która zastąpi
 brakujące wartości (`NA`) średnią arytmetyczną (domyślnie) lub wartością

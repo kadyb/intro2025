@@ -3133,7 +3133,7 @@ vertical-align: -.125em;
 <li>nazwa funkcji – nazwa, która spowoduje wywołanie funkcji. Powinna odzwierciedlać to, co funkcja robi.</li>
 <li>argumenty – dane wejściowe funkcji określone w okrągłych nawiasach <code>()</code>. Funkcja może mieć zero, jeden lub wiele argumentów.</li>
 <li>ciało funkcji – blok kodu w nawiasach klamrowych <code>{}</code>, który definiuje działanie funkcji. Może zawierać obliczenia, pętle, instrukcje warunkowe i wywołania innych funkcji.</li>
-<li>wynik funkcji – instrukcja <code>return()</code> powoduje zakończenie dziłania funkcji i zwrócenie jej wyniku. Jeśli nie został określony, to funkcja zwróci wartość ostatniego wyrażenia obliczonego w ciele funkcji (tzw. niejawny <code>return</code>). Ponadto, aby zwrócić wiele wartości, zazwyczaj łączy się je w listę.</li>
+<li>wynik funkcji – instrukcja <code>return()</code> powoduje zakończenie działania funkcji i zwrócenie jej wyniku. Jeśli nie został określony, to funkcja zwróci wartość ostatniego wyrażenia obliczonego w ciele funkcji (tzw. niejawny <code>return</code>). Ponadto, aby zwrócić wiele wartości, zazwyczaj łączy się je w listę.</li>
 </ul>
 <p>Składnia prezentuje się w następujący sposób:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nazwa_funkcji <span class="ot">=</span> <span class="cf">function</span>(argument1, argument2) {</span>
@@ -3156,7 +3156,7 @@ vertical-align: -.125em;
 </div>
 <p>Funkcja może zwracać wiele wartości. Zobaczmy to na przykładzie obliczania statystyk opisowych wektora numerycznego. Poszczególne statystyki zostaną zwrócone jako lista.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>statysytki <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>statystyki <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(x),</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">srednia =</span> <span class="fu">mean</span>(x),</span>
@@ -3166,7 +3166,7 @@ vertical-align: -.125em;
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">statysytki</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">statystyki</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$min
 [1] 1
@@ -3286,50 +3286,55 @@ $maks
 </ul>
 <p>Funkcja <code>try()</code> jest najprostszym sposobem obsługi błędów w R. Próbuje wykonać wyrażenie i jeśli wystąpi błąd (<em>error</em>), to nie zatrzymuje całego skryptu, ale zwraca obiekt klasy <code>try-error</code>. Następnie, możemy sprawdzić czy wystąpił błąd i podjąć odpowiednie działania. Argument <code>silent = TRUE</code> wstrzymuje wyświetlanie komunikatu o błędzie na konsoli (błąd jest nadal przechwytywany w zwracanym obiekcie).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">try</span>(<span class="fu">sqrt</span>(<span class="st">&quot;tekst&quot;</span>), <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">inherits</span>(result, <span class="st">&quot;try-error&quot;</span>)) {</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Wystąpił błąd:&quot;</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, result)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  result</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>wynik <span class="ot">=</span> <span class="fu">try</span>(<span class="fu">sqrt</span>(<span class="st">&quot;tekst&quot;</span>), <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(wynik)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;try-error&quot;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">inherits</span>(wynik, <span class="st">&quot;try-error&quot;</span>)) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Wystąpił błąd:&quot;</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, wynik)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  wynik</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wystąpił błąd: 
  Error in sqrt(&quot;tekst&quot;) : non-numeric argument to mathematical function</code></pre>
 </div>
 </div>
-<p>Do bardziej zaawansowanej kontroli służy funkcja <code>tryCatch()</code>, która obsługuje zaróno błędy i ostrzeżenia. Dodatkowo, na końcu funkcji można zdefiniować blok kodu <code>finally</code>, który jest zawsze wykonywany, niezależnie od tego, czy wystąpił błąd lub ostrzeżenie. Jest przydatny do zadań, które muszą zostać wykonane niezależnie od powodzenia działania programu (np. zamykanie połączenia do pliku czy bazy danych).</p>
+<p>Do bardziej zaawansowanej kontroli służy funkcja <code>tryCatch()</code>, która obsługuje zarówno błędy i ostrzeżenia. Dodatkowo, na końcu funkcji można zdefiniować blok kodu <code>finally</code>, który jest zawsze wykonywany, niezależnie od tego, czy wystąpił błąd lub ostrzeżenie. Jest przydatny do zadań, które muszą zostać wykonane niezależnie od powodzenia działania programu (np. zamykanie połączenia do pliku czy bazy danych).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pierwiastek <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">expr =</span> {</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">sqrt</span>(x)) <span class="co"># testowana funkcja</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="st">&quot;Funkcja zwróciła błąd!&quot;</span>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="st">&quot;Funkcja zwróciła ostrzeżenie!&quot;</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pierwiastek <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">expr =</span> {</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">sqrt</span>(x)) <span class="co"># testowana funkcja</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="st">&quot;Funkcja zwróciła błąd!&quot;</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="st">&quot;Funkcja zwróciła ostrzeżenie!&quot;</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sprawdźmy teraz działanie funkcji <code>pierwiastek()</code> w zależności od rodzaju danych wejściowych.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pierwiastek</span>(<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pierwiastek</span>(<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pierwiastek</span>(<span class="sc">-</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pierwiastek</span>(<span class="sc">-</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Funkcja zwróciła ostrzeżenie!</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>NULL</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pierwiastek</span>(<span class="st">&quot;tekst&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pierwiastek</span>(<span class="st">&quot;tekst&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Funkcja zwróciła błąd!</code></pre>
 </div>
@@ -3342,7 +3347,7 @@ $maks
 <h1>Zadanie</h1>
 <ol type="1">
 <li>Napisz funkcję, która sprawdzi, czy liczba jest parzysta lub nieparzysta.</li>
-<li>Napisz funkcję, która zamieni stopnie Celsjusza na Farenhaita oraz wykona operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.</li>
+<li>Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.</li>
 <li>Dany jest wektor <code>1, 2, 3, NA, 5, 6, NA, 8, 9</code>. Napisz funkcję, która zastąpi brakujące wartości (<code>NA</code>) średnią arytmetyczną (domyślnie) lub wartością zdefiniowaną przez użytkownika. Do wykrycia brakujących wartości wykorzystaj funkcję <code>is.na()</code>.</li>
 <li>Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.</li>
 </ol>
