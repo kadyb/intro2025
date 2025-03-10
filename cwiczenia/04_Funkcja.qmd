@@ -227,7 +227,7 @@ pierwiastek = function(x) {
       message("Funkcja zwróciła ostrzeżenie!")
       return(NULL)
     }
-    )
+  )
 }
 ```
 
@@ -246,7 +246,9 @@ pierwiastek("tekst")
 2. Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona
 operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.
 3. Dany jest wektor `1, 2, 3, NA, 5, 6, NA, 8, 9`. Napisz funkcję, która zastąpi
-brakujące wartości (`NA`) średnią arytmetyczną (domyślnie) lub wartością
-zdefiniowaną przez użytkownika. Do wykrycia brakujących wartości wykorzystaj
+brakujące wartości (`NA`) średnią arytmetyczną lub wartością zdefiniowaną
+przez użytkownika. Załóżmy, że jeżeli użytkownik nie wskazał wartości
+(argument wejściowy domyślnie ustawiony jest jako pusta wartość `NULL`), to
+zostanie wykorzystana średnia. Do wykrycia brakujących wartości wykorzystaj
 funkcję `is.na()`.
 4. Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.
