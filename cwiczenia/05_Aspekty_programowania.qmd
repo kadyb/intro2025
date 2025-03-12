@@ -73,7 +73,7 @@ w formacie `.Rd`.
 #' @return Pole prostokąta (typ liczbowy).
 #'
 #' @examples
-#' calculate_area(5, 10)  # zwraca 50
+#' pole_prostokata(5, 10)  # zwraca 50
 
 pole_prostokata = function(a, b) {
   P = a * b
