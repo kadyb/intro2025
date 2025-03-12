@@ -61,8 +61,8 @@ pole_prostokata(a = 10, b = 5)
 ```
 
 Funkcja może zwracać wiele wartości. Zobaczmy to na przykładzie obliczania
-statystyk opisowych wektora numerycznego. Poszczególne statystyki zostaną
-zwrócone jako lista.
+statystyk opisowych wektora numerycznego (tj. średniej, mediany, wartości
+minimalnej oraz maksymalnej). Poszczególne statystyki zostaną zwrócone jako lista.
 
 ```{r}
 statystyki = function(x) {
@@ -242,13 +242,14 @@ pierwiastek("tekst")
 
 # Zadanie
 
-1. Napisz funkcję, która sprawdzi, czy liczba jest parzysta lub nieparzysta.
-2. Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona
+1. Napisz funkcję, która sprawdzi czy liczba jest parzysta. Jeśli warunek
+zostanie spełniony, to zwróci wartość logiczną `TRUE`, w przeciwnym razie `FALSE`.
+2. Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.
+3. Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona
 operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.
-3. Dany jest wektor `1, 2, 3, NA, 5, 6, NA, 8, 9`. Napisz funkcję, która zastąpi
+4. Dany jest wektor `1, 2, 3, NA, 5, 6, NA, 8, 9`. Napisz funkcję, która zastąpi
 brakujące wartości (`NA`) średnią arytmetyczną lub wartością zdefiniowaną
 przez użytkownika. Załóżmy, że jeżeli użytkownik nie wskazał wartości
 (argument wejściowy domyślnie ustawiony jest jako pusta wartość `NULL`), to
 zostanie wykorzystana średnia. Do wykrycia brakujących wartości wykorzystaj
 funkcję `is.na()`.
-4. Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.

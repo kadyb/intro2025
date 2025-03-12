@@ -3154,7 +3154,7 @@ vertical-align: -.125em;
 <pre><code>[1] 50</code></pre>
 </div>
 </div>
-<p>Funkcja może zwracać wiele wartości. Zobaczmy to na przykładzie obliczania statystyk opisowych wektora numerycznego. Poszczególne statystyki zostaną zwrócone jako lista.</p>
+<p>Funkcja może zwracać wiele wartości. Zobaczmy to na przykładzie obliczania statystyk opisowych wektora numerycznego (tj. średniej, mediany, wartości minimalnej oraz maksymalnej). Poszczególne statystyki zostaną zwrócone jako lista.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>statystyki <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(</span>
@@ -3346,10 +3346,10 @@ $maks
 <section id="zadanie" class="level1">
 <h1>Zadanie</h1>
 <ol type="1">
-<li>Napisz funkcję, która sprawdzi, czy liczba jest parzysta lub nieparzysta.</li>
+<li>Napisz funkcję, która sprawdzi czy liczba jest parzysta. Jeśli warunek zostanie spełniony, to zwróci wartość logiczną <code>TRUE</code>, w przeciwnym razie <code>FALSE</code>.</li>
+<li>Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.</li>
 <li>Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.</li>
 <li>Dany jest wektor <code>1, 2, 3, NA, 5, 6, NA, 8, 9</code>. Napisz funkcję, która zastąpi brakujące wartości (<code>NA</code>) średnią arytmetyczną lub wartością zdefiniowaną przez użytkownika. Załóżmy, że jeżeli użytkownik nie wskazał wartości (argument wejściowy domyślnie ustawiony jest jako pusta wartość <code>NULL</code>), to zostanie wykorzystana średnia. Do wykrycia brakujących wartości wykorzystaj funkcję <code>is.na()</code>.</li>
-<li>Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.</li>
 </ol>
 </section>
 
