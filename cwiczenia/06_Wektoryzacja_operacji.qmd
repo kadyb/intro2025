@@ -24,7 +24,9 @@ stosowana jest w różnych językach i bibliotekach, np. `NumPy` (Python), `Eige
 Język R jest zoptymalizowany pod kątem operacji wektorowych, co sprawia, że są one
 zazwyczaj znacznie wydajniejsze przede wszystkim z powodu zaimplementowania ich
 w językach niższego poziomu takich jak C czy Fortran. Kod jest również czytelniejszy
-i krótszy niż kod wykorzystujący pętle.
+i krótszy niż kod wykorzystujący pętle. Pomimo tego, nie wszystkie zadania mogą
+zostać zwektoryzowane, zwłaszcza jeśli wymagają złożonej logiki i iteracyjnego
+podejścia.
 
 Rozpocznijmy od napisania prostej pętli, która wykona mnożenie elementów wektora
 od 1 do 10 przez 2. Iloczyn każdego elementu musimy przechowywać w nowej zmiennej
