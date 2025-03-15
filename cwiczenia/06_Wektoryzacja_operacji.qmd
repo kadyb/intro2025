@@ -70,7 +70,7 @@ x == y
 Podczas wykonywania operacji na wektorach o różnych długościach, krótszy wektor
 jest powtarzany, tak aby odpowiadał długości dłuższego wektora (jest to tak
 zwany recykling). W przypadku, gdy krótszy wektor nie jest wielokrotnością
-dłuższego wektora, to zostanie zwrócone ostrzezenie, a wynikowa długość nie
+dłuższego wektora, to zostanie zwrócone ostrzeżenie, a wynikowa długość nie
 będzie pełną wielokrotnością. Należy o tym pamiętać, aby uniknąć niepożądanych
 skutków.
 
@@ -104,7 +104,7 @@ for (i in 1:length(x)) {
 y
 ```
 
-Jednak, możemy ten kod znacząco uprościć używająć zwektoryzowanej instrukcji
+Jednak, możemy ten kod znacząco uprościć używając zwektoryzowanej instrukcji
 warunkowej `ifelse()`, która przyjmuje trzy argumenty:
 
 - testowany warunek (w naszym przypadku `x < 0`),
@@ -177,9 +177,9 @@ nchar(x)
 
 # Zaawansowane techniki wektoryzacji
 
-Do tej pory omówliśmy podstawowe techniki wektoryzacji operacji. Niemniej,
+Do tej pory omówiliśmy podstawowe techniki wektoryzacji operacji. Niemniej,
 dostępne są również dodatkowe narzędzia, w szczególności służące do wektoryzacji
-operacji na bardziej złożonych strukturach danych niż wektory. W tym celu stsowana
+operacji na bardziej złożonych strukturach danych niż wektory. W tym celu stosowana
 jest rodzina funkcji `*apply()`.
 
 ## Macierz (`apply`)
@@ -215,7 +215,7 @@ Funkcja `lapply()` wykonuje wybraną funkcję każdego elementu listy i zwraca
 listę o tej samej długości.
 
 Dla przykładu zdefiniujmy listę, która będzie składać się z trzech wektorów
-liczobwych i obliczmy średnią dla każdego z nich.
+liczbowych i obliczmy średnią dla każdego z nich.
 
 ```{r}
 lst = list(a = 1:3, b = 4:6, c = 7:9)
@@ -262,6 +262,6 @@ przedziału od 1 do 25. Napisz funkcję, która obliczy różnicę między warto
 maksymalną i minimalną, a następnie zastosuj ją osobno dla kolumn i osobno
 dla wierszy bez wykorzystania pętli.
 4. Napisz funkcję, która wykona `n` rzutów kostką bez użycia pętli, a następnie
-obliczy odsetek w procentach ile razy wypadła wartość wskazana przez użytkownika.
+obliczy odsetek w procentach, ile razy wypadła wartość wskazana przez użytkownika.
 5. Napisz funkcję, która obliczy wskaźnik masy ciała ze wzoru
 $BMI = \frac{masa}{wzrost^2}$ dla wielu pomiarów bez użycia pętli.
