@@ -131,8 +131,9 @@ ifelse(x < 0,
 
 # Zwektoryzowane funkcje
 
-R zapewnia również bogaty zestaw zwektoryzowanych funkcji dla różnego rodzaju
-operacji i zadań, np. matematyczne, statystyczne, przetwarzania tekstu, itd.
+Oprócz zwektoryzowanych operacji na wektorach czy macierzach, R zapewnia
+również bogaty zestaw zwektoryzowanych funkcji dla różnego rodzaju zadań,
+np. funkcje matematyczne, statystyczne, przetwarzania tekstu i inne.
 
 ```{r}
 x = 1:10
