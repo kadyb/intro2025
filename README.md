@@ -32,6 +32,7 @@ Aplikacja dostępna jest na różnych platformach do pobrania w [tym miejscu](ht
 3. [Pętla](https://kadyb.github.io/intro2025/cwiczenia/03_Petla.html)
 4. [Funkcja](https://kadyb.github.io/intro2025/cwiczenia/04_Funkcja.html)
 5. [Jak napisać dobrą funkcję?](https://kadyb.github.io/intro2025/cwiczenia/05_Aspekty_programowania.html)
+6. [Wektoryzacja operacji](https://kadyb.github.io/intro2025/cwiczenia/06_Wektoryzacja_operacji.html)
 
 # Materiały dodatkowe
 
