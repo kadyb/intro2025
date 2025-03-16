@@ -247,10 +247,11 @@ sapply(lst, FUN = length)
 
 ## Inne
 
-Wymieniliśmy tylko trzy podstawowe funkcje z rodziny `*apply()`, ale jest
-ich o więcej. Dodatkowo, w przypadku bardzo dużych zbiorów danych można
-połączyć wektoryzację operacji z przetwarzaniem równoległym wykorzystującym
-wiele rdzeni procesora w celu dalszego zwiększenia wydajności.
+Poznaliśmy tylko trzy podstawowe funkcje z rodziny `*apply()`, ale jest
+ich więcej, np. `tapply()` stosowana z podziałem na kategorie czy `vapply()` z
+jawnym określeniem zwracanego typu. Dodatkowo, w przypadku bardzo dużych zbiorów
+danych, można połączyć wektoryzację operacji z przetwarzaniem równoległym
+wykorzystującym wiele rdzeni procesora w celu dalszego zwiększenia wydajności.
 
 # Zadania
 
