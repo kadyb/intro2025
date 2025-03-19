@@ -255,9 +255,9 @@ wykorzystującym wiele rdzeni procesora w celu dalszego zwiększenia wydajności
 
 # Zadania
 
-1. Napisz pętlę, która doda wartości elementów dwóch wektorów `1, 2, 3, 4` i
-`4, 3, 2, 1`. Następnie wykonaj to samo działanie, ale używając podejścia
-zwektoryzowanego.
+1. Napisz pętlę, która doda pojedynczo wartości elementów dwóch wektorów
+`10, 20, 30, 40` i `40, 30, 20, 10`. Następnie wykonaj to samo działanie, ale
+używając podejścia zwektoryzowanego.
 2. Dany jest wektor składający się z wyrazów: `okno`, `kot`, `stolik`, `chmura`.
 Stwórz nowy wektor, który połączy te wyrazy z ich wersjami pisanymi wielkimi
 literami, np. `okno_OKNO`.
