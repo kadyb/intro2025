@@ -266,12 +266,10 @@ przedziału od 1 do 25. Napisz funkcję, która obliczy różnicę między warto
 maksymalną i minimalną, a następnie zastosuj ją osobno dla kolumn i osobno
 dla wierszy bez wykorzystania pętli.
 4. Napisz funkcję, która obliczy wskaźnik masy ciała ze wzoru
-$BMI = \frac{masa}{wzrost^2}$ dla wielu pomiarów bez użycia pętli.
+$BMI = \frac{masa}{wzrost^2}$ dla wielu pomiarów bez użycia pętli. Sprawdź
+czy wektory są równej długości oraz czy wzrost wyrażony jest w metrach.
 5. Napisz funkcję, która wykona `n` rzutów kostką bez użycia pętli, a następnie
 obliczy odsetek w procentach, ile razy wypadła wartość wskazana przez użytkownika.
-6. Napisz funkcję, która przyjmie wektor liczbowy, a następnie zliczy ile liczb
-mieści się w jednym odchyleniu standardowym od średniej wartości oraz obliczy
-odsetek tych liczb.
-7. Napisz funkcję, która przyjmie dwa wektory tekstowe, a następnie porówna
+6. Napisz funkcję, która przyjmie dwa wektory tekstowe, a następnie porówna
 parami długość wyrazów między nimi i zwróci numer wektora z dłuższym wyrazem.
 Jeśli wyrazy mają jednakową długość, to zostanie zwrócona wartość 0.
