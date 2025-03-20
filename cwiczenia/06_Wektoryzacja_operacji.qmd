@@ -131,6 +131,34 @@ ifelse(x < 0,
        )
 ```
 
+W kontekście wektoryzacji sprawdzania warunków logicznych, możemy wykorzystać
+dwie bardzo przydatne funkcje, tj. `any()` oraz `all()`. Funkcja `any()` sprawdza,
+czy przynajmniej jeden element w wektorze logicznym ma wartość `TRUE` (jeśli tak,
+to zostanie zwrócona wartość `TRUE`). Natomiast funkcja `all()` zwróci wartość
+`TRUE`, tylko wtedy, gdy wszystkie elementy w wektorze są `TRUE`.
+
+```{r}
+# czy przynajmniej jeden element jest TRUE?
+any(c(FALSE, FALSE, TRUE))
+
+# czy wszystkie elementy są TRUE?
+all(c(TRUE, TRUE, TRUE))
+```
+
+Najczęściej te dwie funkcje stosowane są do walidacji danych.
+
+```{r}
+x = 1:5
+
+if (any(x > 10)) {
+  print("Co najmniej jedna liczba jest większa od 10!")
+}
+
+if (all(x > 0)) {
+  print("Wszystkie liczby są dodatnie!")
+}
+```
+
 # Zwektoryzowane funkcje
 
 Oprócz zwektoryzowanych operacji na wektorach czy macierzach, R zapewnia
@@ -177,6 +205,10 @@ length(x)
 # liczba liter w każdym wyrazie
 nchar(x)
 ```
+
+Funkcja `nchar()` działa także dla wektorów liczbowych poprzez ich automatyczną
+konwersję na typ tekstowych, co może powodować pewne nieoczekiwane wyniki, np.
+`nchar(-1)`, `nchar(1.23)`.
 
 # Zaawansowane techniki wektoryzacji
 
@@ -235,8 +267,8 @@ lst = list(a = 1:5, b = letters[1:4], c = c(TRUE, FALSE))
 lapply(lst, FUN = length)
 ```
 
-Jeśli chcemy uzyskać wynik w postaci wektora zamiast listy, to powinniśmy użyć
-funkcji `sapply()`, która jest podobna do `lapply()`, ale próbuje uprościć
+Jeśli chcielibyśmy uzyskać wynik w postaci wektora zamiast listy, to powinniśmy
+użyć funkcji `sapply()`, która jest podobna do `lapply()`, ale próbuje uprościć
 wynik do wektora (lub macierzy), pod warunkiem, że wyniki są tej samej długości
 i typu (w przeciwnym razie zwróci listę).
 
