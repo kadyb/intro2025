@@ -1,0 +1,476 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Przetwarzanie danych"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    toc-depth: 2
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+# Wczytywanie i zapisywanie danych
+
+Pierwszy etap w analizie danych to wczytanie (importowanie) danych. R obsługuje
+różne formaty plików, takie jak pliki tekstowe, CSV (*comma-separated values*)
+czy arkusze kalkulacyjne. Podstawową funkcją do wczytywania danych tabelarycznych
+jest `read.table()` i jej pochodne.
+
+## Ścieżka bezwzględna i względna
+
+Można wyróżnić dwa sposoby dostępu do lokalizacji plików na dysku:
+
+1. Ścieżka bezwzględna (*absolute path*).
+2. Ścieżka względna (*relative path*).
+
+Ścieżka bezwzględna określa pełną, dokładną lokalizację pliku, począwszy od
+katalogu głównego systemu plików (`C:/` w systemie Windows lub `/` w systemach
+uniksowych). Największym ograniczeniem jest zależność od struktury katalogów
+na dysku i systemu. Po przeniesieniu danych na inny komputer lub system operacyjny,
+ścieżka ta przestaje być prawidłowa. Oznacza to, że nie jest przenośna i z tego
+powodu ten sposób nie jest zalecany!
+
+```r
+# ścieżka bezwzględna
+C:/Users/Krzysztof/Dokumenty/dane/plik.csv
+```
+
+Natomiast ścieżka względna określa położenie pliku względem bieżącego katalogu
+roboczego (*working directory*), dzięki czemu jest przenośna między systemami,
+o ile struktura plików względem katalogu roboczego pozostaje taka sama. Do
+sprawdzenia aktualnego katalogu roboczego służy funkcja `getwd()`, a do zmiany
+funkcja `setwd()`.
+
+```r
+# ustawienie nowego katalogu roboczego
+setwd("C:/Users/Krzysztof/Dokumenty")
+
+# ścieżka względna
+dane = "dane/plik.csv"
+```
+
+## Wczytywanie
+
+W katalogu `dane` znajdziesz plik tekstowy o nazwie `iris.txt`, który zawiera
+pomiary cech (atrybutów) trzech różnych gatunków irysów. Zacznijmy od sprawdzenia
+w jakiej lokalizacji (tj. katalogu roboczym) aktualnie się znajdujemy.
+
+```r
+getwd()
+#> "C:/Users/Krzysztof/Desktop/intro2025/cwiczenia"
+```
+
+Plik `iris.txt` zapisany jest w równoległym (na tym samym poziomie hierarchii)
+katalogu `dane`, więc musimy wykorzystać składnię `..` do przejścia o jeden poziom
+wyżej, a następnie wskazać lokalizację podrzędną do tego pliku (`dane/iris.txt`).
+
+```{r}
+plik = "../dane/iris.txt"
+```
+
+Spróbujmy go teraz wczytać używając funkcji `read.table()`. Przed importem danych
+należy sprawdzić następujące elementy:
+
+- Czy plik posiada nazwy kolumn `header`?
+- Jaki znak jest separatorem kolumn `sep` (spacja, średnik, przecinek)?
+- Jaki znak jest separatorem dziesiętnym liczb `dec` (kropka czy przecinek)?
+
+W zależności od odpowiedzi na te pytania, powinniśmy ustawić odpowiednie
+wartości argumentów funkcji, aby plik został prawidłowo wczytany. Jeśli tego
+nie zrobimy, to przykładowo wszystkie wartości zostaną wczytane do jednej kolumny
+albo liczby zostaną wczytane jako tekst.
+
+```{r}
+iris = read.table(plik, header = TRUE, sep = " ", dec = ".")
+```
+
+Plik został wczytany jako ramka danych. Do weryfikacji jego zawartości możemy
+wykorzystać funkcję `str()`, która wyświetli jego strukturę, czyli podstawowe
+informacje o klasie obiektu, liczbie obserwacji (wierszy) oraz zmiennych (kolumn),
+typie danych i przykładowe wartości z kolumn.
+
+```{r}
+str(iris)
+```
+
+Jak wspomniano wcześniej, `read.table()` jest funkcją podstawową do wczytywania
+różnego rodzaju plików tabelarycznych. Jednak, istnieją jej dwa warianty do plików
+CSV z wartościami (kolumnami) oddzielanymi przecinkami. Są to `read.csv()` oraz
+`read.csv2()`, które przyjmują różne domyślne wartości argumentów. W krajach
+europejskich (w tym w Polsce) preferowany jest ten drugi wariant, ponieważ
+domyślnie przecinek pełni funkcję separatora dziesiętnego liczby, a nie kolumn
+jak definiuje to standard pliku CSV.
+
+## Zapisywanie
+
+Dane oczywiście możemy zapisać (eksportować) w różnych formatach analogiczne
+wykorzystując  funkcję `write.table()` oraz jej pochodne, np. `write.csv()`.
+Jako argumenty funkcji należy podać obiekt do zapisania oraz ścieżkę, w której
+zostanie on zapisany. Oprócz tego, można zdefiniować inne argumenty (np. sepeatator
+dziesiętny czy separator kolumn).
+
+```{r}
+write.table(iris, "../dane/iris.csv", sep = ";", dec = ",", row.names = FALSE)
+```
+
+Plik został zapisany w katalogu `dane`.
+
+# Obsługa ramek danych
+
+## Inspekcja
+
+Po wczytaniu danych następnym krokiem jest zapoznanie się z nimi. Jest to
+konieczny etap, aby zrozumieć ich strukturę oraz zawartość. W R mamy dostępny 
+szereg możliwości:
+
+- `str()` -- wyświetla strukturę obiektu.
+- `summary()` -- zwraca podstawowe statystyki opisowe.
+- `head()` -- domyślnie wyświetla pierwsze 6 wierszy zbioru danych.
+- `tail()` -- domyślnie wyświetla ostatnie 6 wierszy zbioru danych.
+- `unique()` -- zwraca unikalne wartości.
+- `dim()` -- zwraca liczbę wierszy i kolumn.
+- `ncol()` -- zwraca liczbę kolumn.
+- `nrow()` -- zwraca liczbę wierszy.
+- `rownames()` -- zwraca (lub modyfikuje) nazwy wierszy.
+- `colnames()` -- zwraca (lub modyfikuje) nazwy kolumn.
+- `class()` -- zwraca klasę obiektu.
+
+## Selekcja kolumn i wierszy
+
+Do selekcji kolumn i wierszy z ramki danych wykorzystuje się nawiasy kwadratowe
+`[]`. Wynik selekcji można zapisać do nowej zmiennej, np. `iris_sel` albo nadpisać
+istniejący obiekt (jednak należy uważać).
+
+```{r}
+#| eval: false
+
+# wybierz 5 pierwszych wierszy
+iris[1:5, ]
+
+# wybierz kolumny o indeksach 1, 2 i 5
+iris[, c(1, 2, 5)]
+
+# wybierz kolumnę o nazwie "Species"
+iris[, "Species"]
+
+# wybór kolumny używając $
+iris$Species
+```
+
+Obserwacje znajdujące się w wierszach można także filtrować na podstawie
+określonych warunków.
+
+```{r}
+#| eval: false
+
+# wybierz obserwacje z gatunku "setosa"
+iris[iris$Species == "setosa", ]
+
+# wybierz obserwacje spełniające oba warunki
+# oraz wybierz tylko kolumnę "Species"
+iris[iris$Sepal.Length > 7 & iris$Sepal.Width > 3, "Species"]
+```
+
+Operatory logiczne zwracają wartości logiczne `TRUE` i `FALSE` dla każdego
+testowanego elementu. Jednak, w przetwarzaniu danych często isotniejsze jest
+określenie pozycji (indeksów) elementów, które spełniają określony warunek,
+to znaczy przyjmują wyłącznie wartość `TRUE`. W takim przypadku bardzo przydatna
+jest funkcja `which()`, która zwraca indeksy elementów wektora logicznego, które
+mają wartość `TRUE`.
+
+```{r}
+# wektor logiczny o długości 150
+x = iris$Sepal.Length < 5
+```
+
+```{r}
+# zwraca indeksy elementów, które spełniły warunek
+which(x)
+```
+
+Dostępne są jeszcze dwie podobne funkcje `which.min()` oraz `which.max()`, które
+zwracają kolejno indeks pierwszej najmniejszej lub największej wartości liczbowej
+w wektorze. W praktyce może posłużyc to na przykład do znalezienia gatunku irysa,
+który ma najmniejszą długość płatku kwiata.
+
+```{r}
+which.min(iris$Sepal.Length)
+which.max(iris$Sepal.Length)
+```
+
+Zauważ, że funkcje `min()` oraz `max()` zwracają wartość minimalną oraz maksymalną,
+natomiast funkcje `which.min()` oraz `which.max()` zwracają ich indeksy!
+
+## Sortowanie
+
+Podstawową funkcją do sortowania wektorów w kolejności rosnącej lub malejącej
+jest `sort()`. Natomiast, do sortowania w ramce danych, a ściślej mówiąc
+uporządkowania danych według odpowiedniej kolejności, służy funkcja `order()`.
+Możliwe jest wykorzystanie jednej lub większej liczby kolumn do sortowania.
+
+```{r}
+#| eval: false
+
+# sortowanie rosnące
+iris[order(iris$Sepal.Length), ]
+
+# sortowanie malejące (znak minus)
+iris[order(-iris$Sepal.Length), ]
+
+# sortowanie według dwóch kolumn
+iris[order(iris$Sepal.Length, iris$Sepal.Width), ]
+```
+
+## Przetwarzanie
+
+Na ramce danych możemy wykonać różne transformacje, które polegają na tworzeniu
+nowych kolumn (zmiennych), modyfikowaniu istniejących, konwersji typów danych
+czy usuwaniu wierszy oraz kolumn.
+
+### Dodawanie kolumn
+
+Wykonanie określonych operacji (np. matematycznych czy warunkowych) może posłużyć
+do stworzenia nowych kolumn w zbiorze danych.
+
+```{r}
+#| eval: false
+
+# stworzenie nowej kolumny reprezentującej
+# współczynnik długości do szerokości płatka
+iris$petal_ratio = iris$Petal.Length / iris$Petal.Width
+```
+
+Możliwe jest również modyfikowanie wartości istniejących kolumn.
+
+```{r}
+#| eval: false
+
+# przeskalowanie wartości kolumny "Sepal.Length" przez 2
+iris$Sepal.Length = iris$Sepal.Length * 2
+```
+
+### Zmiana nazw kolumn
+
+Do zmiany nazw kolumn, ale także wyświetlania, służy funkcja `colnames()`.
+W celu zmiany wszystkich nazw, należy przypisać nowy wektor tekstowy o tej samej
+długości (liczbie nazw). Jeśli zmiana nazwy dotyczy wybranych kolumn, to należy
+zastosować indeksowanie lub operator porównawczy `==`.
+
+```{r}
+#| eval: false
+
+colnames(iris)
+#> [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"
+
+# zamiana nazwy piątej kolumny
+colnames(iris)[5] = "Gatunek"
+colnames(iris)
+#> [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Gatunek"
+```
+
+### Usuwanie kolumn
+
+Usunięcie kolumn z ramki danych można przeprowadzić na dwa sposoby. Pierwszy,
+przez filtrację, co zostało wcześniej zademonstrowane. Drugi sposób polega na
+przypisaniu wybranej kolumnie pustej wartości `NULL`.
+
+```{r}
+#| eval: false
+
+# usunięcie kolumn "Species" z ramki danych
+iris$Species = NULL
+
+# usunięcie poprzez negatywną selekcję
+iris = iris[, -5]
+```
+
+# Brakujące wartości
+
+Brakujące wartości są ozonaczone w R jako specjalne wartości `NA` (*Not Available*).
+Jest to fundamentalna koncepcja w analizie danych, ponieważ rzeczywiste zbiory
+danych często zawierają brakujące wartości z różnych powodów, np. błędy podczas
+pozyskiwania danych, brak odpowiedzi w ankiecie czy awaria sprzętu pomiarowego.
+Zazwyczaj przeprowadzenie operacji na zbiorach danych, które posiadają brakujące
+wartości nie jest możliwe (wynikiem będzie `NA`).
+
+```{r}
+# wektor z brakującymi wartościami
+x = c(1, NA, 3, NA, 5)
+sum(x)
+```
+
+## Identyfikacja
+
+Podstawową funkcją do identyfikowania brakujących danych jest `is.na()`, która
+sprawdza, czy każdy element obiektu ma brakującą wartość `NA`. Zwraca ona wektor
+logiczny o tej samej długości, z wartością `TRUE` jeśli wystąpiło `NA`.
+
+```{r}
+# czy element ma brakującą wartość?
+is.na(x)
+```
+
+Przeciwieństwem wymienionej funkcji jest `complete.cases()`, która zwraca wartość
+`TRUE`, jeśli element obiektu posiada uzupełnioną wartość.
+
+```{r}
+# czy element ma wartość?
+complete.cases(x)
+```
+
+Aby określić liczbę brakujących wartości w wektorze wystarczy zsumować wartości
+logiczne `TRUE` (1), kiedy wstąpiło `NA` w funkcji `is.na()`.
+
+```{r}
+# zlicz brakujące wartości
+sum(is.na(x))
+```
+
+## Obsługa
+
+W sytuacji, kiedy napotkamy na brakujące wartości w naszym zbiorze danych, to
+koniecznie jest ich wykluczenie z analizy, aby wykonać obliczenia i otrzymać
+prawidłowe wyniki, co można wykonać na kilka sposobów. Wiele funkcji posiada
+argumenty do obsługi wartości `NA` (najczęściej `na.rm`). Ustawienie `na.rm = TRUE`
+powoduje, że funkcja usuwa wartości `NA` przed wykonaniem obliczeń.
+
+```{r}
+sum(x, na.rm = TRUE)
+```
+
+Jeśli funkcja nie posiada argumentu do usuwania brakujących wartości, to musimy
+zrobić to samodzielnie. W tym celu możemy wykorzystać poznaną funkcję
+`complete.cases()`, która zwróci tylko te wiersze z ramki danych, które posiadają
+wartości.
+
+```{r}
+df = data.frame(
+  id = 1:5,
+  imie = c("Ania", "Tomek", NA, "Dawid", "Zosia"),
+  wiek = c(25, NA, 15, 20, NA)
+)
+```
+
+```{r}
+# wiersze zawierające NA zostały pominięte
+df[complete.cases(df), ]
+```
+
+Podobne działanie posiada funkcja `na.omit()`, która usuwa wiersze z brakującymi
+wartościami. W alternatywnym podejściu, zamiast usuwać brakujące dane, moglibyśmy
+przypisać im jakąś określoną wartość, np. średnią, medianę czy wartość zdefiniowaną
+przez użytkownika.
+
+W przypadku, gdy pewna kolumna (zmienna) zawiera dużo brakujących wartości,
+to warto zastanowić się czy nie lepiej usunąć całą kolumnę niż usuwać wiele
+wierszy (obserwacji).
+
+# Agregacja danych
+
+**Agregacja danych** to proces polegający na podsumowaniu danych, obejmujący
+ich generalizację do formy zestawienia najczęściej z uwzględnieniem katagorii
+(grup) w nich występujących lub przedziałów czasowych. W tym celu używa się
+różnych miar statystycznych, takich jak suma, średnia, mediana czy wartość
+minimalna i maksymalna. Wynikiem tego procesu jest przekształcenie danych
+wejściowych w łatwiejszą do interpretacji formę.
+
+Funkcja `table()` umożliwia stworzenie prostej tabeli będącej zestawieniem
+wystąpień czynników (kategorii).
+
+```{r}
+table(iris$Species)
+```
+
+Bardziej zaawansowane możliwości oferuje funkcja `aggregate()`, która dokonuje
+podsumowania danych na podstawie zmiennej grupującej i wykorzystuje określoną
+funkcję (np. średnia) do każdego podzbioru. Finalnie wynik zwracany jest w
+postaci ramki danych.
+
+W funkcji `aggregate()` jako pierwszy argument należy podać formułę, którą
+definiuje się używając znaku tyldy `~`. Po lewej stronie tyldy określamy kolumny
+do agregacji, natomiast po prawwej stronie wskazujemy zmienną grupującą. Oprócz
+tego, należy wskazać zbiór danych (`data`) oraz funkcję grupującą (`FUN`).
+Zobaczymy to na następującym przykładzie.
+
+```{r}
+aggregate(Sepal.Length ~ Species, data = iris, FUN = mean)
+```
+
+# Łączenie danych
+
+**Łączenie danych** to proces integracji danych z wielu źródeł (np. różnych tabel)
+w jeden, ujednolicony zestaw danych oparty na wspólnych atrybutach lub kluczach,
+np. ID. Wyróżnić można kilka rodzjaów połączeń:
+
+- Wewnętrzne (*inner join*) -- zachowuje wiersze z pasującymi kluczami w obu
+zestawach danych.
+- Lewe (*left join*) -- zachowuje wszystkie wiersze z lewego zestawu danych i
+dopasowania z prawego.
+- Prawe (*right join*) -- zachowuje wszystkie wiersze z prawego zestawu danych
+i dopasowania z lewego.
+- Pełne (*full join*) -- zachowuje wszystkie wiersze z obu zestawów danych.
+
+Podstawowym narzędziem do łączenia ramek danych na podstawie wspólnego atrubytu
+(klucza) jest funkcja `merge()`. Wymaga ona wskazania pierwszej (`x`) oraz
+drugiej (`y`) ramki danych i atrybutu łączącego (`by`). Do wyboru rodzaju połączenia
+służa argumenty `all.x` (lewe połączenie), `all.y` (prawe połączenie), `all`
+(pełne połączenie). Domyślnie wykonywane jest połączenie wewnętrzne.
+
+```{r}
+df1 = data.frame(
+  ID = c(1, 2, 3, 4),
+  imie = c("Ania", "Tomek", "Dawid", "Zosia")
+)
+
+df2 = data.frame(
+  ID = c(1, 2, 3, 5),
+  wiek = c(25, 22, 15, 20)
+)
+
+# połącz dwie tabele na podstawie ID
+m = merge(df1, df2, by = "ID")
+m
+```
+
+W przypadku gdy dane mamy uporządkowane i o takiej samej liczbie elementów, to
+możemy zastosować prostszy wariant łączenia używając funkcji `cbind()` (dodawanie
+kolumn) oraz `rbind()` (dodawanie wierszy).
+
+```{r}
+m = rbind(m, c(4, "Zosia", 25))
+m
+```
+
+```{r}
+m = cbind(m, miasto = c("Warszawa", "Poznań", "Kraków", "Gdańsk"))
+m
+```
+
+# Zadania
+
+1. Wczytaj do sesji zapisany na dysku plik `iris.csv`.
+2. Dokonaj inspekcji wczytanego zbioru danych. W szczególności sprawdź strukturę
+i typ danych, liczbę kolumn i wierszy, unikalne gatunki oraz statystyki opisowe.
+Odpowiedzi zapisz w formie komentarzy.
+3. Znajdź ten gatunek irysów, którego wartość `Sepal.Length` jest większa niż
+7 cm. Jaki to gatunek?
+4. Który gatunek posiada najmniejszą wartość `Petal.Length` i ile wynosi
+ta wartość?
+5. Policz ile jest obserwacji, dla których `Petal.Width` jest większe bądź
+równe 2 cm.
+6. Do ramki danych dodaj nową kolumnę o nazwie `rzadki`. Przyjmie ona wartość
+`TRUE`, jeśli wspólczynnik `Petal.Length` do `Petal.Width` będzie większy od 6
+(w przeciwnym razie `FALSE`). W tym celu wykorzystaj funkcję poznaną na
+poprzednich zajęciach.
+7. Utwórz nową ramkę danych, która będzie posiadała tylko 10 obserwacji
+o największej wartości `Sepal.Length` posortowanych malejąco. Do utworzonej
+ramki danych dodaj nową kolumnę z ID od 1 do 10.
+8. Ze zbioru wybierz gatunek `setosa` i zapisz go na dysku jako plik tekstowy
+o nazwie `setosa.txt`. Uprzednio zmień nazwy kolumn, aby nie zawierały `.`,
+ale `_` między słowami. Jako separator kolumn wykorzystaj przecinek, a jako
+separator dziesiętny kropkę. Pomiń zapisywanie ID obserwacji.
