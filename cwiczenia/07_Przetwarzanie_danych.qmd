@@ -111,7 +111,7 @@ jak definiuje to standard pliku CSV.
 Dane oczywiście możemy zapisać (eksportować) w różnych formatach analogiczne
 wykorzystując  funkcję `write.table()` oraz jej pochodne, np. `write.csv()`.
 Jako argumenty funkcji należy podać obiekt do zapisania oraz ścieżkę, w której
-zostanie on zapisany. Oprócz tego, można zdefiniować inne argumenty (np. sepeatator
+zostanie on zapisany. Oprócz tego, można zdefiniować inne argumenty (np. separator
 dziesiętny czy separator kolumn).
 
 ```{r}
@@ -177,7 +177,7 @@ iris[iris$Sepal.Length > 7 & iris$Sepal.Width > 3, "Species"]
 ```
 
 Operatory logiczne zwracają wartości logiczne `TRUE` i `FALSE` dla każdego
-testowanego elementu. Jednak, w przetwarzaniu danych często isotniejsze jest
+testowanego elementu. Jednak, w przetwarzaniu danych często istotniejsze jest
 określenie pozycji (indeksów) elementów, które spełniają określony warunek,
 to znaczy przyjmują wyłącznie wartość `TRUE`. W takim przypadku bardzo przydatna
 jest funkcja `which()`, która zwraca indeksy elementów wektora logicznego, które
@@ -195,8 +195,8 @@ which(x)
 
 Dostępne są jeszcze dwie podobne funkcje `which.min()` oraz `which.max()`, które
 zwracają kolejno indeks pierwszej najmniejszej lub największej wartości liczbowej
-w wektorze. W praktyce może posłużyc to na przykład do znalezienia gatunku irysa,
-który ma najmniejszą długość płatku kwiata.
+w wektorze. W praktyce może posłużyć to na przykład do znalezienia gatunku irysa,
+który ma najmniejszą długość płatku kwiatu.
 
 ```{r}
 which.min(iris$Sepal.Length)
@@ -267,7 +267,7 @@ zastosować indeksowanie lub operator porównawczy `==`.
 colnames(iris)
 #> [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"
 
-# zamiana nazwy piątej kolumny
+# zmiana nazwy piątej kolumny
 colnames(iris)[5] = "Gatunek"
 colnames(iris)
 #> [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Gatunek"
@@ -291,7 +291,7 @@ iris = iris[, -5]
 
 # Brakujące wartości
 
-Brakujące wartości są ozonaczone w R jako specjalne wartości `NA` (*Not Available*).
+Brakujące wartości są oznaczone w R jako specjalne wartości `NA` (*Not Available*).
 Jest to fundamentalna koncepcja w analizie danych, ponieważ rzeczywiste zbiory
 danych często zawierają brakujące wartości z różnych powodów, np. błędy podczas
 pozyskiwania danych, brak odpowiedzi w ankiecie czy awaria sprzętu pomiarowego.
@@ -307,8 +307,8 @@ sum(x)
 ## Identyfikacja
 
 Podstawową funkcją do identyfikowania brakujących danych jest `is.na()`, która
-sprawdza, czy każdy element obiektu ma brakującą wartość `NA`. Zwraca ona wektor
-logiczny o tej samej długości, z wartością `TRUE` jeśli wystąpiło `NA`.
+sprawdza, czy każdy element obiektu ma brakującą wartość `NA`. Jeśli wystąpiło
+`NA`, to zwraca wartość logiczną `TRUE` dla tego elementu.
 
 ```{r}
 # czy element ma brakującą wartość?
@@ -373,7 +373,7 @@ wierszy (obserwacji).
 # Agregacja danych
 
 **Agregacja danych** to proces polegający na podsumowaniu danych, obejmujący
-ich generalizację do formy zestawienia najczęściej z uwzględnieniem katagorii
+ich generalizację do formy zestawienia najczęściej z uwzględnieniem kategorii
 (grup) w nich występujących lub przedziałów czasowych. W tym celu używa się
 różnych miar statystycznych, takich jak suma, średnia, mediana czy wartość
 minimalna i maksymalna. Wynikiem tego procesu jest przekształcenie danych
@@ -393,7 +393,7 @@ postaci ramki danych.
 
 W funkcji `aggregate()` jako pierwszy argument należy podać formułę, którą
 definiuje się używając znaku tyldy `~`. Po lewej stronie tyldy określamy kolumny
-do agregacji, natomiast po prawwej stronie wskazujemy zmienną grupującą. Oprócz
+do agregacji, natomiast po prawej stronie wskazujemy zmienną grupującą. Oprócz
 tego, należy wskazać zbiór danych (`data`) oraz funkcję grupującą (`FUN`).
 Zobaczymy to na następującym przykładzie.
 
@@ -405,7 +405,7 @@ aggregate(Sepal.Length ~ Species, data = iris, FUN = mean)
 
 **Łączenie danych** to proces integracji danych z wielu źródeł (np. różnych tabel)
 w jeden, ujednolicony zestaw danych oparty na wspólnych atrybutach lub kluczach,
-np. ID. Wyróżnić można kilka rodzjaów połączeń:
+np. ID. Wyróżnić można kilka rodzajów połączeń:
 
 - Wewnętrzne (*inner join*) -- zachowuje wiersze z pasującymi kluczami w obu
 zestawach danych.
@@ -415,10 +415,10 @@ dopasowania z prawego.
 i dopasowania z lewego.
 - Pełne (*full join*) -- zachowuje wszystkie wiersze z obu zestawów danych.
 
-Podstawowym narzędziem do łączenia ramek danych na podstawie wspólnego atrubytu
+Podstawowym narzędziem do łączenia ramek danych na podstawie wspólnego atrybutu
 (klucza) jest funkcja `merge()`. Wymaga ona wskazania pierwszej (`x`) oraz
 drugiej (`y`) ramki danych i atrybutu łączącego (`by`). Do wyboru rodzaju połączenia
-służa argumenty `all.x` (lewe połączenie), `all.y` (prawe połączenie), `all`
+służą argumenty `all.x` (lewe połączenie), `all.y` (prawe połączenie), `all`
 (pełne połączenie). Domyślnie wykonywane jest połączenie wewnętrzne.
 
 ```{r}
@@ -464,7 +464,7 @@ ta wartość?
 5. Policz ile jest obserwacji, dla których `Petal.Width` jest większe bądź
 równe 2 cm.
 6. Do ramki danych dodaj nową kolumnę o nazwie `rzadki`. Przyjmie ona wartość
-`TRUE`, jeśli wspólczynnik `Petal.Length` do `Petal.Width` będzie większy od 6
+`TRUE`, jeśli współczynnik `Petal.Length` do `Petal.Width` będzie większy od 6
 (w przeciwnym razie `FALSE`). W tym celu wykorzystaj funkcję poznaną na
 poprzednich zajęciach.
 7. Utwórz nową ramkę danych, która będzie posiadała tylko 10 obserwacji
