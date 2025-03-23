@@ -26,10 +26,9 @@ potencjalne problemy i stosuje odpowiednie środki zapobiegawcze, aby zagwaranto
 że oprogramowanie zachowa się przewidywalnie.
 
 Napisanie funkcji, która będzie wykonywała określone zadanie jest relatywnie
-proste. Jednakże, napisanie **dobrej** funkcji wymaga zaplanowania i
-przestrzegania odpowiednich praktyk programistycznych, dzięki czemu można
-znacznie poprawić czytelność, łatwość utrzymania oraz umożliwić wykorzystanie
-kodu przez inne osoby. 
+proste. Jednakże, napisanie dobrej funkcji wymaga przemyślenia i przestrzegania
+odpowiednich praktyk programistycznych, dzięki czemu można znacznie poprawić
+czytelność, łatwość utrzymania oraz umożliwić wykorzystanie kodu przez inne osoby. 
 
 Najważniejsze aspekty, które należy uwzględnić:
 
