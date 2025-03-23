@@ -17,7 +17,7 @@ próg wejścia, prostą składnię oraz ogromny ekosystem wspierany przez społe
 
 **1. Instalacja R**
 
-Interpreter języka **R** można pobrać dla [Windows](https://cloud.r-project.org/bin/windows/base/R-4.4.3-win.exe),
+Interpreter języka **R** można pobrać dla [Windows](https://cloud.r-project.org/bin/windows/base/),
 [MacOS](https://cran.r-project.org/bin/macosx/) oraz [Linux](https://cloud.r-project.org/bin/linux/).
 
 **2. Instalacja RStudio**
@@ -33,6 +33,7 @@ Aplikacja dostępna jest na różnych platformach do pobrania w [tym miejscu](ht
 4. [Funkcja](https://kadyb.github.io/intro2025/cwiczenia/04_Funkcja.html)
 5. [Jak napisać dobrą funkcję?](https://kadyb.github.io/intro2025/cwiczenia/05_Aspekty_programowania.html)
 6. [Wektoryzacja operacji](https://kadyb.github.io/intro2025/cwiczenia/06_Wektoryzacja_operacji.html)
+7. [Przetwarzanie danych](https://kadyb.github.io/intro2025/cwiczenia/07_Przetwarzanie_danych.html)
 
 # Materiały dodatkowe
 
