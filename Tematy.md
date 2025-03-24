@@ -9,7 +9,7 @@ Proponowane tematy prezentacji:
 7. Różne podejścia do programowania. Porównanie programowania obiektowego i funkcjonalnego.
 8. Omówienie różnych struktur danych (np. listy, stosy, tablice, kolejki, słowniki, itd.).
 9. System kontroli wersji Git i GitHub.
-10. Omówienie wybranego języka programowania. Możliwości, zastosowania, wady i zalety.
+10. Omówienie wybranego języka programowania. Składnia, kod, przykłady, możliwości, zastosowania, wady i zalety.
 11. Co to jest interfejs programowania aplikacji (API)?
 12. Debugowanie i błędy w kodzie.
 13. Analiza wydajności oprogramowania. Benchmarki i profilowanie kodu.
