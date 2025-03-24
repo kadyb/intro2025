@@ -465,8 +465,7 @@ ta wartość?
 równe 2 cm.
 6. Do ramki danych dodaj nową kolumnę o nazwie `rzadki`. Przyjmie ona wartość
 `TRUE`, jeśli współczynnik `Petal.Length` do `Petal.Width` będzie większy od 6
-(w przeciwnym razie `FALSE`). W tym celu wykorzystaj funkcję poznaną na
-poprzednich zajęciach.
+(w przeciwnym razie `FALSE`).
 7. Utwórz nową ramkę danych, która będzie posiadała tylko 10 obserwacji
 o największej wartości `Sepal.Length` posortowanych malejąco. Do utworzonej
 ramki danych dodaj nową kolumnę z ID od 1 do 10.
