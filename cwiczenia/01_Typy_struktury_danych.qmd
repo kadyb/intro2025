@@ -73,6 +73,10 @@ typeof("Tomek")
 typeof(TRUE)
 ```
 
+Wartości logiczne `TRUE` i `FALSE` odpowiadają kolejno wartościom binarnym
+1 i 0, w związku z czym można wykorzystać je w obliczeniach numerycznych
+(najczęściej do sumowania wystąpień wartości `TRUE`).
+
 **Uwaga!** Domyślnie wszystkie liczby traktowane są jako zmiennoprzecinkowe,
 tak jak w powyższym przykładzie 10 posiada typ `double`, mimo iż jest całkowita.
 Aby traktować ją jako całkowitą należy do liczby dodać literę `L`.
