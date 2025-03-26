@@ -3148,13 +3148,14 @@ vertical-align: -.125em;
 </ol>
 <p>Ścieżka bezwzględna określa pełną, dokładną lokalizację pliku, począwszy od katalogu głównego systemu plików (<code>C:/</code> w systemie Windows lub <code>/</code> w systemach uniksowych). Największym ograniczeniem jest zależność od struktury katalogów na dysku i systemu. Po przeniesieniu danych na inny komputer lub system operacyjny, ścieżka ta przestaje być prawidłowa. Oznacza to, że nie jest przenośna i z tego powodu ten sposób nie jest zalecany!</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ścieżka bezwzględna</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>Krzysztof<span class="sc">/</span>Dokumenty<span class="sc">/</span>dane<span class="sc">/</span>plik.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;C:/Users/Krzysztof/Dokumenty/dane/plik.csv&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Natomiast ścieżka względna określa położenie pliku względem bieżącego katalogu roboczego (<em>working directory</em>), dzięki czemu jest przenośna między systemami, o ile struktura plików względem katalogu roboczego pozostaje taka sama. Do sprawdzenia aktualnego katalogu roboczego służy funkcja <code>getwd()</code>, a do zmiany funkcja <code>setwd()</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ustawienie nowego katalogu roboczego</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/Krzysztof/Dokumenty&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ścieżka względna</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">=</span> <span class="st">&quot;dane/plik.csv&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ścieżki do plików definiowane są jako tekst, zatem wymagany jest zapis w cudzysłowie.</p>
 </section>
 <section id="wczytywanie" class="level2">
 <h2 class="anchored" data-anchor-id="wczytywanie">Wczytywanie</h2>
@@ -3476,9 +3477,10 @@ vertical-align: -.125em;
 <h1>Zadania</h1>
 <ol type="1">
 <li>Wczytaj do sesji zapisany na dysku plik <code>iris.csv</code>.</li>
-<li>Dokonaj inspekcji wczytanego zbioru danych. W szczególności sprawdź strukturę i typ danych, liczbę kolumn i wierszy, unikalne gatunki oraz statystyki opisowe. Odpowiedzi zapisz w formie komentarzy.</li>
+<li>Dokonaj inspekcji wczytanego zbioru danych. W szczególności sprawdź strukturę i typ danych, liczbę kolumn i wierszy, unikalne gatunki oraz statystyki opisowe kolumn numerycznych. Odpowiedzi zapisz w formie komentarzy.</li>
 <li>Znajdź ten gatunek irysów, którego wartość <code>Sepal.Length</code> jest większa niż 7 cm. Jaki to gatunek?</li>
 <li>Który gatunek posiada najmniejszą wartość <code>Petal.Length</code> i ile wynosi ta wartość?</li>
+<li>Która zmienna (kolumna) posiada największą wartość i ile wynosi ta wartość?</li>
 <li>Policz ile jest obserwacji, dla których <code>Petal.Width</code> jest większe bądź równe 2 cm.</li>
 <li>Do ramki danych dodaj nową kolumnę o nazwie <code>rzadki</code>. Przyjmie ona wartość <code>TRUE</code>, jeśli współczynnik <code>Petal.Length</code> do <code>Petal.Width</code> będzie większy od 6 (w przeciwnym razie <code>FALSE</code>).</li>
 <li>Utwórz nową ramkę danych, która będzie posiadała tylko 10 obserwacji o największej wartości <code>Sepal.Length</code> posortowanych malejąco. Do utworzonej ramki danych dodaj nową kolumnę z ID od 1 do 10.</li>

@@ -37,7 +37,7 @@ powodu ten sposób nie jest zalecany!
 
 ```r
 # ścieżka bezwzględna
-C:/Users/Krzysztof/Dokumenty/dane/plik.csv
+"C:/Users/Krzysztof/Dokumenty/dane/plik.csv"
 ```
 
 Natomiast ścieżka względna określa położenie pliku względem bieżącego katalogu
@@ -53,6 +53,9 @@ setwd("C:/Users/Krzysztof/Dokumenty")
 # ścieżka względna
 dane = "dane/plik.csv"
 ```
+
+Ścieżki do plików definiowane są jako tekst, zatem wymagany jest zapis w
+cudzysłowie.
 
 ## Wczytywanie
 
@@ -455,21 +458,22 @@ m
 
 1. Wczytaj do sesji zapisany na dysku plik `iris.csv`.
 2. Dokonaj inspekcji wczytanego zbioru danych. W szczególności sprawdź strukturę
-i typ danych, liczbę kolumn i wierszy, unikalne gatunki oraz statystyki opisowe.
-Odpowiedzi zapisz w formie komentarzy.
+i typ danych, liczbę kolumn i wierszy, unikalne gatunki oraz statystyki opisowe
+kolumn numerycznych. Odpowiedzi zapisz w formie komentarzy.
 3. Znajdź ten gatunek irysów, którego wartość `Sepal.Length` jest większa niż
 7 cm. Jaki to gatunek?
 4. Który gatunek posiada najmniejszą wartość `Petal.Length` i ile wynosi
 ta wartość?
-5. Policz ile jest obserwacji, dla których `Petal.Width` jest większe bądź
+5. Która zmienna (kolumna) posiada największą wartość i ile wynosi ta wartość?
+6. Policz ile jest obserwacji, dla których `Petal.Width` jest większe bądź
 równe 2 cm.
-6. Do ramki danych dodaj nową kolumnę o nazwie `rzadki`. Przyjmie ona wartość
+7. Do ramki danych dodaj nową kolumnę o nazwie `rzadki`. Przyjmie ona wartość
 `TRUE`, jeśli współczynnik `Petal.Length` do `Petal.Width` będzie większy od 6
 (w przeciwnym razie `FALSE`).
-7. Utwórz nową ramkę danych, która będzie posiadała tylko 10 obserwacji
+8. Utwórz nową ramkę danych, która będzie posiadała tylko 10 obserwacji
 o największej wartości `Sepal.Length` posortowanych malejąco. Do utworzonej
 ramki danych dodaj nową kolumnę z ID od 1 do 10.
-8. Ze zbioru wybierz gatunek `setosa` i zapisz go na dysku jako plik tekstowy
+9. Ze zbioru wybierz gatunek `setosa` i zapisz go na dysku jako plik tekstowy
 o nazwie `setosa.txt`. Uprzednio zmień nazwy kolumn, aby nie zawierały `.`,
 ale `_` między słowami. Jako separator kolumn wykorzystaj przecinek, a jako
 separator dziesiętny kropkę. Pomiń zapisywanie ID obserwacji.
