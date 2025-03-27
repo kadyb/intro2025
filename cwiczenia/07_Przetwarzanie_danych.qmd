@@ -101,6 +101,9 @@ typie danych i przykładowe wartości z kolumn.
 str(iris)
 ```
 
+![Encyclopædia Britannica, 2006](https://cdn.britannica.com/39/91239-004-44353E32/Diagram-flowering-plant.jpg)
+
+
 Jak wspomniano wcześniej, `read.table()` jest funkcją podstawową do wczytywania
 różnego rodzaju plików tabelarycznych. Jednak, istnieją jej dwa warianty do plików
 CSV z wartościami (kolumnami) oddzielanymi przecinkami. Są to `read.csv()` oraz
