@@ -3420,7 +3420,7 @@ window.Quarto = {
 </section>
 <section id="dodawanie-warstw" class="level2">
 <h2 class="anchored" data-anchor-id="dodawanie-warstw">Dodawanie warstw</h2>
-<p>Do istniejącego wykresy można dodawać kolejne warstwy punktowe lub liniowie używając funkcji <code>points()</code> oraz <code>lines()</code>.</p>
+<p>Do istniejącego wykresy można dodawać kolejne warstwy punktowe lub liniowe używając funkcji <code>points()</code> oraz <code>lines()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x, x<span class="sc">*</span><span class="dv">5</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span>
@@ -3436,7 +3436,7 @@ window.Quarto = {
 </section>
 <section id="linie-pomocnicze" class="level2">
 <h2 class="anchored" data-anchor-id="linie-pomocnicze">Linie pomocnicze</h2>
-<p>Funkcja <code>abline()</code> umożliwia dodanie linii w określonych lokalizacjach. W zależności od zdefiniowanych wartości argumentów, linia może być horyzontalna (argument <code>h</code>), wekrtykalna (argument <code>v</code>) lub może przedstawiać trend (argumenty <code>a</code> – wyraz wolny oraz <code>b</code> – współczynnik kierunkowy prostej).</p>
+<p>Funkcja <code>abline()</code> umożliwia dodanie linii w określonych lokalizacjach. W zależności od zdefiniowanych wartości argumentów, linia może być horyzontalna (argument <code>h</code>), wertykalna (argument <code>v</code>) lub może przedstawiać trend (argumenty <code>a</code> – wyraz wolny oraz <code>b</code> – współczynnik kierunkowy prostej).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># linia horyzontalna</span></span>
@@ -3456,11 +3456,11 @@ window.Quarto = {
 </section>
 <section id="tekst" class="level2">
 <h2 class="anchored" data-anchor-id="tekst">Tekst</h2>
-<p>Funkcja <code>text()</code> dodaje etykiety tekstowe do punktów lub określonych lokalizacji na wykresie.</p>
+<p>Funkcja <code>text()</code> dodaje etykiety tekstowe do punktów lub określonych lokalizacji na wykresie. Wymagane jest określenie pozycji tekstu używając dwóch współrzędnych oraz podanie wektora tekstowego. Argumenty <code>pos</code> oraz <code>offset</code> pozwalają na przesunięcie tekstu względem punktów.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(x, y, <span class="at">labels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">pos =</span> <span class="dv">2</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">2</span>, <span class="dv">80</span>, <span class="st">&quot;Nowy tekst&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">2</span>, <span class="dv">80</span>, <span class="at">labels =</span> <span class="st">&quot;Nowy tekst&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
