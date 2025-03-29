@@ -1,0 +1,261 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Wizualizacja danych"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+# Wprowadzenie
+
+**Wizualizacja danych** jest niezbędnym etapem w analizie danych, który pozwala
+odkrywać, interpretować i przedstawiać wzorce oraz trendy wynikające z danych.
+R oferuje wiele funkcji graficznych dzięki wbudowanemu systemowi tworzenia
+wykresów. Podstawową funkcją do generowania różnego rodzaju wykresów jest funkcja
+`plot()`, która domyślnie rysuje wykres rozrzutu (punktowy) dla dwóch zmiennych
+numerycznych. Niemniej, posiada ona o wiele więcej zastosowań.
+
+```{r}
+x = 1:10
+y = x^2
+
+plot(x, y, main = "Funkcja kwadratowa", xlab = "Oś X", ylab = "Oś Y",
+     pch = 19, col = "blue")
+```
+
+W powyższym przykładzie argumenty `x` i `y` to zmienne wejściowe (dane), `main`
+to tytuł wykresu, `xlab` i `ylab` to etykiety osi X i Y, `pch` to symbol punktu,
+a `col` to kolor punktów.
+
+# Rodzaje wykresów
+
+`mtcars` to jeden z wbudowanych zestawów danych w R, który zawiera informacje
+o 32 różnych modelach samochodów z magazynu Motor Trend US z 1974 r. Zawiera 11
+zmiennych (kolumn) związanych z osiągami i konstrukcją tych samochodów. Na jego
+podstawie wygenerujemy cztery podstawowe typy wykresów. Dokumentację zbioru można
+sprawdzić używając `?mtcars`.
+
+```{r}
+# wczytanie danych do sesji
+mtcars = mtcars
+
+# struktura danych
+str(mtcars)
+```
+
+## Wykres rozrzutu
+
+Wykres rozrzutu przedstawia związek między dwiema zmiennymi ciągłymi. Każdy
+punkt na wykresie przedstawia pojedynczą obserwację, przy czym oś X reprezentuje
+zmienną niezależną (wyjaśniającą), a oś Y zmienną zależną (modelowaną).
+Podstawowym zastosowaniem jest wizualne zbadanie potencjalnego związku (korelacji)
+między dwiema zmiennymi.
+
+```{r}
+plot(mtcars$wt, mtcars$mpg, 
+     main = "Spalanie paliwa w zależności od wagi samochodu",
+     xlab = "Waga [1000 funtów]",
+     ylab = "Mile na galon (MPG)",
+     pch = 19,
+     col = "darkred")
+```
+
+## Wykres liniowy
+
+Wykres liniowy jest najczęściej używany do pokazywania trendów lub zmian w czasie.
+Oś pozioma (X) zazwyczaj reprezentuje czas, jednak nie jest to regułą. Linie
+proste łączą kolejne punkty, pokazując trend lub przebieg zmian, co pomaga
+przedstawić, w jaki sposób zmienna zależna na osi Y zmienia się wraz ze zmienną
+niezależną na osi X. Do utworzenia wykresu liniowego należy użyć argumentu `type`
+w funkcji `plot()` z wartością `"l"`.
+
+```{r}
+# dane muszą być posortowane
+sorted = mtcars[order(mtcars$wt), ]
+
+plot(sorted$wt, sorted$mpg,
+     type = "l",
+     main = "Spalanie paliwa w zależności od wagi samochodu",
+     xlab = "Waga [1000 funtów]",
+     ylab = "Mile na galon (MPG)",
+     lwd = 2)
+```
+
+## Wykres słupkowy
+
+Wykres słupkowy służy do wizualnego przedstawiania danych kategorycznych za
+pomocą prostokątnych słupków. Wysokość lub długość słupków jest proporcjonalna
+do wartości, które reprezentują. Do wykresów słupkowych stosowana jest funkcja
+`barplot()` zamiast `plot()`.
+
+```{r}
+# zlicz wystąpienia dla każdego cylindra (grupy)
+cyl_counts = table(mtcars$cyl)
+cyl_counts
+```
+
+```{r}
+barplot(cyl_counts, xlab = "Liczba cylindrów", ylab = "Liczba samochodów")
+```
+
+## Histogram
+
+Histogram służy do przedstawienia rozkładu danych liczbowych w postaci słupków.
+Grupuje dane w przedziały (interwały) i pokazuje częstość wystąpień obserwacji
+mieszczących się w każdym z przedziałów. Kształt histogramu dostarcza istotnych
+informacji o rozkładzie danych (np. czy jest skośny czy symetryczny). Histogram
+można stworzyć używając funkcji `hist()`.
+
+```{r}
+hist(mtcars$hp, xlab = "Konie mechaniczne [KM]", ylab = "Częstość", main = NULL)
+```
+
+# Ustawienia wykresów
+
+Wykresy można dostosować według własnego uznania, dodając lub modyfikując różne
+elementy za pomocą odpowiednich argumentów funkcji `plot()`.
+
+## Kolor
+
+Kolory punktów, linii, słupków i innych elementów można zmieniać używając
+argumentu `col`, natomiast argument `border` zmienia kolor obwódki. R obsługuje
+angielskie nazwy kolorów (np. `red`, `blue`), a także szesnastkowe kody kolorów
+(np. `#FF0000`; czerwony). Można również skorzystać z wbudowanych palet kolorów,
+takich jak `rainbow()`, `heat.colors()` czy `topo.colors()`. Pełna lista kolorów
+dostępna jest [tutaj](https://r-charts.com/colors/).
+
+## Kształt i rozmiar punktów
+
+Argument `pch` określa kształt punktów na wykresach punktowych, a argument `cex`
+odpowiada za ich rozmiar. Listę z kształtami punktów znajdziesz [tutaj](https://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r).
+
+## Typ i szerokość linii
+
+W przypadku wykresów liniowych można dostosować typ oraz szerokość linii za
+pomocą argumentów `lty` oraz `lwd`. Typ linii (`lty`) można określić za pomocą
+tekstu (`"blank"`, `"solid"`, `"dashed"`, `"dotted"`, `"dotdash"`, `"longdash"`,
+`"twodash"`) lub liczby (0, 1, 2, 3, 4, 5, 6).
+
+## Etykiety
+
+Etykiety można edytować za pomocą argumentów takich jak `xlab` (opis osi X),
+`ylab` (opis osi Y) oraz `main` (tytuł wykresu).
+
+## Dodawanie warstw
+
+Do istniejącego wykresy można dodawać kolejne warstwy punktowe lub liniowe
+używając funkcji `points()` oraz `lines()`.
+
+```{r}
+plot(x, y, col = "black", pch = 19)
+points(x, x*5, col = "blue", pch = 19)
+lines(x, x*5, col = "blue", lty = 2)
+```
+
+## Linie pomocnicze 
+
+Funkcja `abline()` umożliwia dodanie linii w określonych lokalizacjach. W zależności
+od zdefiniowanych wartości argumentów, linia może być horyzontalna (argument `h`),
+wertykalna (argument `v`) lub może przedstawiać trend (argumenty `a` -- wyraz wolny
+oraz `b` -- współczynnik kierunkowy prostej).
+
+```{r}
+plot(x, y)
+# linia horyzontalna
+abline(h = 50, col = "blue", lty = 2)
+# linia wertykalna
+abline(v = 5, col = "red", lty = 3)
+# linia trendu
+abline(a = -22, b = 11, col = "black", lty = 4)
+```
+
+## Tekst
+
+Funkcja `text()` dodaje etykiety tekstowe do punktów lub określonych lokalizacji
+na wykresie. Wymagane jest określenie pozycji tekstu używając dwóch współrzędnych
+oraz podanie wektora tekstowego. Argumenty `pos` oraz `offset` pozwalają
+na przesunięcie tekstu względem punktów.
+
+```{r}
+plot(x, y)
+text(x, y, labels = 1:10, pos = 2)
+text(2, 80, labels = "Nowy tekst")
+```
+
+## Legenda
+
+Legenda jest nieodzownym elementem interpretacji wykresów reprezentujących grupy
+lub serie danych. Do jej wygenerowania służy funkcja `legend()`, w której
+należy określić położenie, nazwy i kolory grup oraz tytuł.
+
+```{r}
+plot(mtcars$wt, mtcars$mpg, 
+     main = "Spalanie paliwa w zależności od wagi i liczby cylindrów samochodu",
+     xlab = "Waga [1000 funtów]",
+     ylab = "Mile na galon (MPG)",
+     pch = 19,
+     col = mtcars$cyl)
+
+legend("topright",
+       legend = sort(unique(mtcars$cyl)),
+       col = sort(unique(mtcars$cyl)),
+       pch = 19,
+       title = "Cylindry")
+```
+
+## Wykresy wielopanelowe
+
+```{r}
+x = -10:10
+y1 = x
+y2 = x^2
+
+# panel składający się z dwóch kolumn
+par(mfrow = c(1, 2))
+
+plot(x, y1, main = "Funkcja liniowa", pch = 19)
+plot(x, y2, main = "Funkcja kwadratowa", pch = 19)
+
+# reset do pojedynczego panelu
+par(mfrow = c(1, 1))
+```
+
+# Zapisywanie wykresów
+
+Stworzone wykresy można zapisać do plików w różnych formatach, np. `png`, `pdf`
+czy `jpeg`. Preferowane są formaty kompresji bezstratnej.
+
+```{r}
+#| eval: false
+
+# zapisanie ryciny w formacie png
+png("wykres.png", width = 400, height = 300)
+plot(x, y2, main = "Funkcja kwadratowa", pch = 19)
+dev.off()
+```
+
+Zawsze należy użyć funkcji `dev.off()` po wygenerowaniu i zapisaniu wykresu
+do pliku.
+
+# Zadania
+
+1. Stwórz wykres liniowy z zaznaczonymi punktami. Zakres wartości zmiennej $X$
+jest od -10 do 10, natomiast zmienna Y zawiera wartości bezwzględne zmiennej $X$.
+2. Stwórz ponownie powyższy wykres, tylko składający się z dwóch krzywych $Y$.
+Pierwsza krzywa $Y_1$ zawiera wartości z przedziału od -10 do 10 (kolor czarny),
+natomiast druga krzywa $Y_2$ zawiera wartości bezwzględne (kolor zielony).
+3. Stwórz wykres rozrzutu wykorzystując dane ze zbioru `iris` oraz zmienne
+`Sepal.Length` i `Sepal.Width`. Jako kolor uwzględnij gatunek irysów (zmienna
+`Species`) oraz dodaj legendę do wykresu.
+4. Stwórz wykres słupkowy przedstawiający liczebność gatunków irysów.
+5. Na podstawie zmiennych `wt` oraz `mpg` ze zbioru `mtcars` stwórz wykres
+rozrzutu, następnie samodzielnie wyznacz linię trendu i dodaj ją do wykresu.
+6. Stwórz histogram zmiennej `wt`. Ustaw odpowiednie etykiety osi. Wybierz również
+kolor słupków oraz obwódki. Jaki jest wniosek z interpretacji tego histogramu?
