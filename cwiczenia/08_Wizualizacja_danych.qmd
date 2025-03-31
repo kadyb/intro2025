@@ -150,8 +150,8 @@ Etykiety można edytować za pomocą argumentów takich jak `xlab` (opis osi X),
 
 ## Dodawanie warstw
 
-Do istniejącego wykresy można dodawać kolejne warstwy punktowe lub liniowe
-używając funkcji `points()`, `lines()`, `rect()` oraz `polygon()`.
+Do istniejącego wykresu można dodawać kolejne warstwy punktowe, liniowe lub
+poligonowe używając funkcji `points()`, `lines()`, `rect()` oraz `polygon()`.
 
 ```{r}
 plot(x, y, col = "black", pch = 19)
