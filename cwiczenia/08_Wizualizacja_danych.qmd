@@ -151,7 +151,7 @@ Etykiety można edytować za pomocą argumentów takich jak `xlab` (opis osi X),
 ## Dodawanie warstw
 
 Do istniejącego wykresy można dodawać kolejne warstwy punktowe lub liniowe
-używając funkcji `points()` oraz `lines()`.
+używając funkcji `points()`, `lines()`, `rect()` oraz `polygon()`.
 
 ```{r}
 plot(x, y, col = "black", pch = 19)
@@ -192,8 +192,8 @@ text(2, 80, labels = "Nowy tekst")
 ## Legenda
 
 Legenda jest nieodzownym elementem interpretacji wykresów reprezentujących grupy
-lub serie danych. Do jej wygenerowania służy funkcja `legend()`, w której
-należy określić położenie, nazwy i kolory grup oraz tytuł.
+lub serie danych. Do jej wygenerowania służy funkcja `legend()`, w której należy
+określić położenie, nazwy i kolory grup oraz tytuł.
 
 ```{r}
 plot(mtcars$wt, mtcars$mpg, 
@@ -209,6 +209,9 @@ legend("topright",
        pch = 19,
        title = "Cylindry")
 ```
+
+Zauważ, że wartości unikalne z kolumny `cyl` nie są posortowane, w związku
+z czym musimy samodzielnie je posortować wraz z odpowiadającymi im kolorami.
 
 ## Wykresy wielopanelowe
 
@@ -248,14 +251,19 @@ do pliku.
 
 1. Stwórz wykres liniowy z zaznaczonymi punktami. Zakres wartości zmiennej $X$
 jest od -10 do 10, natomiast zmienna Y zawiera wartości bezwzględne zmiennej $X$.
-2. Stwórz ponownie powyższy wykres, tylko składający się z dwóch krzywych $Y$.
+2. Stwórz ponownie powyższy wykres, ale składający się z dwóch krzywych $Y$.
 Pierwsza krzywa $Y_1$ zawiera wartości z przedziału od -10 do 10 (kolor czarny),
 natomiast druga krzywa $Y_2$ zawiera wartości bezwzględne (kolor zielony).
-3. Stwórz wykres rozrzutu wykorzystując dane ze zbioru `iris` oraz zmienne
+3. Do powyższego wykresu dodaj horyzontalne oraz wertykalne linie pomocnicze
+o interwale 1. Linie powinny być przerywane, a ich kolor szary z ustawioną
+przezroczystością (`"#BEBEBE4D"`).
+4. Stwórz wykres rozrzutu wykorzystując dane ze zbioru `iris` oraz zmienne
 `Sepal.Length` i `Sepal.Width`. Jako kolor uwzględnij gatunek irysów (zmienna
 `Species`) oraz dodaj legendę do wykresu.
-4. Stwórz wykres słupkowy przedstawiający liczebność gatunków irysów.
-5. Na podstawie zmiennych `wt` oraz `mpg` ze zbioru `mtcars` stwórz wykres
+5. Stwórz wykres słupkowy przedstawiający liczebność gatunków irysów.
+Każdy słupek oznacz innym kolorem z palety kolorów `rainbow`.
+6. Na podstawie zmiennych `wt` oraz `mpg` ze zbioru `mtcars` stwórz wykres
 rozrzutu, następnie samodzielnie wyznacz linię trendu i dodaj ją do wykresu.
-6. Stwórz histogram zmiennej `wt`. Ustaw odpowiednie etykiety osi. Wybierz również
+Jaka jest wartość współczynnika kierunkowego prostej, a jaka wyrazu wolnego?
+7. Stwórz histogram zmiennej `wt`. Ustaw odpowiednie etykiety osi. Wybierz również
 kolor słupków oraz obwódki. Jaki jest wniosek z interpretacji tego histogramu?
