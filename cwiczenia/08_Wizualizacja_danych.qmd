@@ -256,7 +256,7 @@ Pierwsza krzywa $Y_1$ zawiera wartości z przedziału od -10 do 10 (kolor czarny
 natomiast druga krzywa $Y_2$ zawiera wartości bezwzględne (kolor zielony).
 3. Do powyższego wykresu dodaj horyzontalne oraz wertykalne linie pomocnicze
 o interwale 1. Linie powinny być przerywane, a ich kolor szary z ustawioną
-przezroczystością (`"#BEBEBE4D"`).
+przezroczystością (`#BEBEBE4D`).
 4. Stwórz wykres rozrzutu wykorzystując dane ze zbioru `iris` oraz zmienne
 `Sepal.Length` i `Sepal.Width`. Jako kolor uwzględnij gatunek irysów (zmienna
 `Species`) oraz dodaj legendę do wykresu.
