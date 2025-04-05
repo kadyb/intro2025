@@ -459,7 +459,8 @@ m
 
 # Zadania
 
-1. Wczytaj do sesji zapisany na dysku plik `iris.csv`.
+1. W sekcji "*Zapisywanie*" został zapisany na dysku plik `iris.csv`. Wczytaj go
+do sesji.
 2. Dokonaj inspekcji wczytanego zbioru danych. W szczególności sprawdź strukturę
 i typ danych, liczbę kolumn i wierszy, unikalne gatunki oraz statystyki opisowe
 kolumn numerycznych. Odpowiedzi zapisz w formie komentarzy.
