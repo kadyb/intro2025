@@ -1,0 +1,322 @@
+---
+title: "Wstęp do programowania"
+subtitle: "Analiza wydajności kodu"
+author: "Krzysztof Dyba"
+format:
+  html:
+    toc: true
+    toc-title: " "
+    embed-resources: true
+    code-links:
+      - text: Repozytorium
+        icon: github
+        href: https://github.com/kadyb/intro2025
+---
+
+# Wprowadzenie
+
+Benchmarking, profilowanie i optymalizacja kodu są nieodłącznymi aspektami pisania
+wydajnego kodu, aby zapewnić efektywne działanie programów, co jest szczególnie
+ważne przy przetwarzaniu dużych zbiorów danych i złożonych obliczeniach.
+
+**Benchmarking** to proces ogólnego pomiaru wydajności programu lub funkcji.
+Polega on na przeprowadzeniu testów określających wydajność kodu pod względem
+czasu wykonania czy wykorzystania pamięci. Celem benchmarkingu jest ustalenie
+bazowego pomiaru wydajności, który można wykorzystać do porównania różnych
+wersji kodu czy implementacji różnych algorytmów. Wykonanie benchmarku pozwala
+odpowiedzieć na pytanie: "*Czy mój kod działa wolno?*".
+
+**Profilowanie** to proces analizowania wydajności programu lub funkcji
+w celu dokładnego zidentyfikowania części kodu zużywających najwięcej zasobów.
+Pomaga wskazać "wąskie gardła" wydajności, czyli fragmentów kodu, które są
+nieefektywne i wymagają optymalizacji. Profilowanie umożliwia udzielenie odpowiedzi
+na pytanie: "*Dlaczego mój kod działa wolno?*".
+
+**Optymalizacja kodu** to proces modyfikowania kodu, aby działał szybciej i zużywał
+mniej zasobów w oparciu o wyniki benchmarkingu oraz profilowania, przy jednoczesnym
+zachowaniu jego funkcjonalności i poprawności. Techniki optymalizacji kodu zazwyczaj
+obejmują optymalizację algorytmów, struktur danych czy zrównoleglenie obliczeń.
+
+Te trzy procesy współdziałają ze sobą w iteracyjnym cyklu: benchmarking do pomiaru
+ogólnej wydajności, profilowanie do znalezienia problemów, optymalizacja do ich
+rozwiązania, i finalnie ponowny benchmarking w celu weryfikacji wprowadzonych zmian.
+
+```{mermaid}
+flowchart LR
+    A[Kod] --> B[Benchmarking]
+    B --> C[Profilowanie]
+    C --> D[Optymalizacja]
+    D --> B
+    D --> E[Koniec]
+```
+
+# Benchmarking
+
+Podstawowym i najprostszym narzędziem do benchmarkingu jest funkcja `system.time()`,
+która mierzy całkowity czas wykonania wyrażenia (funkcji) przez procesor w sekundach.
+Sumaryczny czas procesu zapisany jest w atrybucie `elapsed`. Sprawdźmy to na
+przykładzie obliczania średniej wartości z wektora składającego się z 100 mln
+elementów. Dla uproszczenia zapisu, możemy podać tę wartość używając notacji
+naukowej $1e8$, czyli $10^8$.
+
+```{r}
+x = 1:1e8
+
+system.time(
+  mean(x)
+)
+```
+
+Wykonaliśmy jednokrotny pomiar wydajności funkcji `mean()`. Jednak, ze statystycznego
+punkty widzenia, nie jest to pomiar wiarygodny, ponieważ podlega losowym odchyleniom
+związanymi przykładowo z wpływem procesów działającymi w tle czy ograniczeniem
+taktowania procesora przy wzroście temperatury. Pojedynczy pomiar nie zapewnia
+informacji na temat zmienności i powtarzalności wyników. Z tego powodu testy muszą
+być uruchamiane wielokrotnie, aby zapewnić wiarygodne wyniki. Dodatkowo, posiadając
+wiele pomiarów, można wykonać analizę statystyczną w oparciu o statystyki takie
+jak średnia, mediana i odchylenie standardowe.
+
+Naturalnie do powtarzania kodu można zastosować pętlę. Jednak, w języku R istnieje
+do tego celu dedykowana funkcja `replicate()`, która również umożliwia wielokrotne
+wykonywanie wskazanej funkcji. Jej pierwszy argument `n` określa liczbę powtórzeń,
+natomiast drugi argument `expr` określa funkcję do wykonania. Zobaczmy to na
+przykładzie pięciokrotnego rzutu kostką.
+
+```{r}
+replicate(5, sample(1:6, size = 1))
+```
+
+Teraz ponownie dokonajmy pomiaru wydajności funkcji `mean()`, ale powtarzając
+go 10 razy. Z wyniku działania funkcji `system.time()` musimy wybrać wartość
+reprezentującą całkowity czas (`elapsed`, tj. trzeci atrybut).
+
+```{r}
+czasy = replicate(10, system.time(mean(x))[[3]])
+czasy
+```
+
+Mając wektor liczbowy składający się z 10 obserwacji możemy wyliczyć wybrane
+statystyki opisowe oraz stworzyć wykres.
+
+```{r}
+mean(czasy)
+```
+
+Funkcja `system.time()` nie jest odpowiednia do testowania bardzo szybkich operacji
+i z tego względu zaleca się bardziej rozbudowane narzędzia do tego celu, np.
+pakiet `bench`.
+
+# Profilowanie
+
+Funkcja `Rprof()` rejestruje stos wywołań w regularnych odstępach czasu (domyślnie
+co 20 milisekund), umożliwiając sprawdzenie, które operacje pochłaniają najwięcej
+czasu i pamięci. Wyniki są następnie podsumowywane za pomocą funkcji `summaryRprof()`.
+Przy analizie należy zwracać uwagę na operacje, które stanowią duży procent
+całkowitego czasu działania.
+
+Wyniki profilowania można przedstawić również w formie interaktywnej wizualizacji
+dzięki pakietowi `profvis`, przez co ich interpretacja staje się łatwiejsza.
+Po uruchomieniu zostanie wyświetlony wykres, gdzie oś X reprezentuje czas, a oś
+Y reprezentuje stos wywołań funkcji zagnieżdżonych (funkcje podrzędne wywoływane
+przez funkcje nadrzędne).
+
+```{r}
+#| eval: false
+
+# instalacja pakietu
+install.packages("profvis")
+```
+
+```{r}
+#| eval: false
+
+# wczytanie pakietu
+library("profvis")
+
+# wygenerowanie danych
+n = 1e6
+df = data.frame(
+  id = sample(1:1000, n, replace = TRUE),
+  value = rnorm(n)
+)
+result = data.frame()
+
+# profilowanie kodu
+profvis({
+  for (id in unique(df$id)) {
+    group = df[df$id == id, ]
+    v = mean(group$value)
+    result = rbind(result, data.frame(id = id, mean = v))
+  }
+})
+```
+
+Każdy poziomy pasek przedstawia wywołanie funkcji. Szerokie paski (obejmujące dużą
+część osi X) oznaczają operacje, które zajmują znaczną ilość czasu. Mogą być to
+potencjalnie "wąskie gardła" i cele optymalizacji, np. nieefektywny algorytm.
+
+# Optymalizacja
+
+W miarę jak zbiory danych stają się coraz większe, powolny kod staje się głównym
+ograniczeniem. Dobrze zoptymalizowany kod może oznaczać różnicę między minutami
+a godzinami oczekiwania na wyniki, co pozwala przetwarzać większe ilości danych
+w krótszym czasie. Niemniej, rozważając optymalizację kodu należy mieć na uwadze
+poniższe ogólne zasady:
+
+1. Zanim zaczniesz optymalizować kod, musisz wiedzieć, co dokładnie optymalizować.
+Do tego niezbędne są dane o wydajności kodu pochodzące z testów wydajności i
+profilowania.
+2. Unikaj zbyt skomplikowanych optymalizacji, które utrudniają utrzymanie kodu
+i zmniejszają jego czytelność.
+3. Najbardziej znaczący wzrost wydajności najczęściej wynika z wyboru bardziej
+wydajnego algorytmu oraz odpowiedniej struktury danych.
+4. Skup się na fragmentach kodu, które pochłaniają najwięcej czasu. Nie kładź
+dużego nacisku na mało znaczące poprawki.
+5. Po optymalizacji upewnij się, że kod nadal generuje prawidłowe wyniki i
+nie zawiera błędów.
+
+## Wektoryzacja kodu
+
+Język R został zaprojektowany do operacji wektorowych, z tego powodu wektoryzacja
+kodu jest często znacznie szybsza w porównaniu do standardowych pętli, ponieważ
+wykorzystuje bazową implementację w języku C oraz Fortran.
+
+```{r}
+# pętla
+x = 1:1e5
+output = NULL
+for (i in 1:length(x)) {
+  output = c(output, sqrt(x[i]))
+}
+```
+
+```{r}
+# wektoryzacja
+x = 1:1e5
+output = sqrt(x)
+```
+
+Poniżej przedstawiono drugi przykład związany z wektoryzacją instrukcji warunkowej.
+
+```{r}
+# pętla
+x = 1:1e5
+output = NULL
+for (i in 1:length(x)) {
+  if (x[i] > 50000) {
+    output = c(output, TRUE)
+  } else {
+    output = c(output, FALSE)
+  }
+}
+```
+
+```{r}
+# wektoryzacja
+x = 1:1e5
+output = x > 50000
+```
+
+## Prealokacja pamięci
+
+Wielokrotne dodawanie elementów w pętli jest skrajnie nieefektywne, ponieważ
+polega na przydzielaniu i kopiowaniu obiektu w pamięci w każdej iteracji.
+Efektywniejszym podejściem jest przydzielenie dokładnej pamięci obiektowi z góry,
+zamiast robić to iteracyjnie. Do sprawdzenia rozmiaru obiektów w pamięci służy
+funkcja `object.size()` i domyślnie zwraca wynik w bajtach.
+
+```{r}
+# iteracyjne dodawanie elementów
+x = 1:1e5
+output = NULL
+obj_size = object.size(output)
+
+for (i in 1:length(x)) {
+  output = c(output, sqrt(x[i]))
+}
+```
+
+Każde wywołanie `c()` kopiuje cały istniejący wektor i dodaje do niego nowy
+element, więc złożoność jest kwadratowa.
+
+```{r}
+# prealokacja pamięci
+x = 1:1e5
+output = numeric(length(x))
+obj_size = object.size(output)
+
+for (i in 1:length(x)) {
+  output[i] = sqrt(x[i])
+}
+```
+
+W tym przypadku rozmiar wektora został określony z góry, więc elementy nie są
+kopiowane i dodawane w każdej iteracji, zatem złożoność jest liniowa.
+
+## Dedykowane funkcje
+
+Można także skorzystać z obszernego zbioru zoptymalizowanych funkcji dostępnych
+zarówno natywnie, jak i za pośrednictwem dodatkowych pakietów, aby uniknąć
+pisania nieefektywnego kodu od podstaw.
+
+Sprawdźmy przykład obliczania średniej wartości dla wierszy macierzy. Komórki
+macierzy uzupełnimy losowymi wartościami z rozkładu normalnego używając funkcję
+`rnorm()`. Następnie, wartość średnią dla każdego wiersza możemy obliczyć na
+trzy różne sposoby wykorzystując:
+
+1. Pętlę.
+2. Ogólną funkcję `apply()`.
+3. Dedykowaną funkcję `rowMeans()`.
+
+```{r}
+# stwórz macierz z losowymi wartościami
+v = rnorm(1e7)
+mat = matrix(v, nrow = 100000)
+```
+
+```{r}
+# pętla z prealokacją pamięci
+row_means_1 = numeric(nrow(mat))
+for (i in 1:nrow(mat)) {
+  row_means_1[i] = mean(mat[i, ])
+}
+```
+
+```{r}
+row_means_2 = apply(mat, MARGIN = 1, FUN = "mean")
+```
+
+```{r}
+row_means_3 = rowMeans(mat)
+```
+
+Otrzymane wyniki możemy porównać używając funkcji `all.equal()` z pewnym przedziałem
+tolerancji. Ma to kluczowe znaczenie dla weryfikacji czy wykorzystane metody
+dają ten sam wynik.
+
+```{r}
+all.equal(row_means_1, row_means_2)
+all.equal(row_means_2, row_means_3)
+```
+
+## Inne
+
+Bardziej zaawansowane techniki optymalizacji polegają na przepisaniu newralgicznych
+fragmentów kodu na języki niskopoziomowe (np. C++ czy Fortran), obliczeniach
+równoległych na wielu rdzeniach procesora jednocześnie czy pomijaniu wykonanych
+już obliczeń dzięki zastosowaniu pamięci podręcznej (memoizacja).
+
+# Zadania
+
+1. Porównaj wydajność funkcji `mean()` i `median()`. Stwórz wykres przedstawiający
+wyniki oparte na wielu pomiarach.
+2. Napisz dwie wersje funkcji obliczającej sumę kwadratów wektora liczbowego.
+Pierwsza wersja oparta o pętlę, druga wersja zwektoryzowana. Porównaj ich wydajność.
+3. Który sposób na obliczenie średniej wartości dla kolumn macierzy jest najwydajniejszy?
+Pętla, funkcja `apply()` czy funkcja `colMeans()`?
+4. Wygeneruj macierz o wymiarach `10000x100` z losowymi wartościami i następnie
+stwórz ramkę danych używając funkcji `as.data.frame()`. Porównaj wydajność funkcji
+`rowSums()` do obliczania sumy z wierszy na podstawie tych dwóch struktur danych.
+5. Na dowolnym przykładzie porównaj jak zmienia się zużycie pamięci dla przyrostowego
+dodawania elementów do obiektu oraz wykorzystując prealokację pamięci. Wyniki
+przedstaw na wykresie.
