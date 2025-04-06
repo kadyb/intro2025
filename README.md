@@ -35,6 +35,7 @@ Aplikacja dostępna jest na różnych platformach do pobrania w [tym miejscu](ht
 6. [Wektoryzacja operacji](https://kadyb.github.io/intro2025/cwiczenia/06_Wektoryzacja_operacji.html)
 7. [Przetwarzanie danych](https://kadyb.github.io/intro2025/cwiczenia/07_Przetwarzanie_danych.html)
 8. [Wizualizacja danych](https://kadyb.github.io/intro2025/cwiczenia/08_Wizualizacja_danych.html)
+9. [Analiza wydajności kodu](https://kadyb.github.io/intro2025/cwiczenia/09_Analiza_wydajnosci.html)
 
 # Materiały dodatkowe
 
