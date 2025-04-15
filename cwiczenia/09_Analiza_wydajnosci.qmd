@@ -309,14 +309,15 @@ już obliczeń dzięki zastosowaniu pamięci podręcznej (memoizacja).
 # Zadania
 
 1. Porównaj wydajność funkcji `mean()` i `median()`. Stwórz wykres przedstawiający
-wyniki oparte na wielu pomiarach.
+wyniki oparte na wielu pomiarach. Na wykresie uwzględnij odpowiednie etykiety
+i legendę.
 2. Napisz dwie wersje funkcji obliczającej sumę kwadratów wektora liczbowego.
 Pierwsza wersja oparta o pętlę, druga wersja zwektoryzowana. Porównaj ich wydajność.
 3. Który sposób na obliczenie średniej wartości dla kolumn macierzy jest najwydajniejszy?
 Pętla, funkcja `apply()` czy funkcja `colMeans()`?
-4. Wygeneruj macierz o wymiarach `10000x100` z losowymi wartościami i następnie
-stwórz ramkę danych używając funkcji `as.data.frame()`. Porównaj wydajność funkcji
-`rowSums()` do obliczania sumy z wierszy na podstawie tych dwóch struktur danych.
+4. Wygeneruj macierz z losowymi wartościami i następnie stwórz ramkę danych
+używając funkcji `as.data.frame()`. Porównaj wydajność funkcji `rowSums()` do
+obliczania sumy z wierszy na podstawie tych dwóch struktur danych.
 5. Na dowolnym przykładzie porównaj jak zmienia się zużycie pamięci dla przyrostowego
 dodawania elementów do obiektu oraz wykorzystując prealokację pamięci. Wyniki
 przedstaw na wykresie.
