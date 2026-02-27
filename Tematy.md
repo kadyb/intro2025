@@ -18,6 +18,7 @@ Proponowane tematy prezentacji:
 16. Czym różni się frontend od backendu?
 17. Dobre praktyki w programowaniu. Dokumentacja, testy, zasady projektowe, styl i zarządzanie kodem.
 
+Prezentacje w parach (obie osoby muszą być zaangażowane); ewentualnie samodzielnie.
 Czas prezentacji: 15-20 min. Po prezentacji krótka dyskusja i pytania.
 
 Na każdych zajęciach 3 prezentacje.
