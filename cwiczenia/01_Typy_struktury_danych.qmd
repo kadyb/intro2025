@@ -159,7 +159,7 @@ levels(fct)  # wyświetl kategorie
 
 ## Macierz
 
-Macierze (*matrix*) to dwuwymiarowe tablice składające się z wierszy oaz kolumn,
+Macierze (*matrix*) to dwuwymiarowe tablice składające się z wierszy oraz kolumn,
 w których wszystkie elementy są tego samego typu.
 
 Do tworzenia macierzy służy funkcja `matrix()`.
