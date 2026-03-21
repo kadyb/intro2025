@@ -1,6 +1,6 @@
 ---
 title: "Wstęp do programowania"
-subtitle: "Jak napisać dobrą funkcję?"
+subtitle: "Aspekty programowania, czyli jak napisać dobrą funkcję?"
 author: "Krzysztof Dyba"
 format:
   html:
