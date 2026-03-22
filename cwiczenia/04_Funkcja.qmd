@@ -244,12 +244,11 @@ pierwiastek("tekst")
 
 1. Napisz funkcję, która sprawdzi czy liczba jest parzysta. Jeśli warunek
 zostanie spełniony, to zwróci wartość logiczną `TRUE`, w przeciwnym razie `FALSE`.
-2. Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.
-3. Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona
+2. Napisz funkcję, która zwraca wszystkie liczby od `1` do `n`, które są podzielne
+przez `k`.
+3. Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.
+4. Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona
 operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.
-4. Dany jest wektor `1, 2, 3, NA, 5, 6, NA, 8, 9`. Napisz funkcję, która zastąpi
-brakujące wartości (`NA`) średnią arytmetyczną lub wartością zdefiniowaną
-przez użytkownika. Załóżmy, że jeżeli użytkownik nie wskazał wartości
-(argument wejściowy domyślnie ustawiony jest jako pusta wartość `NULL`), to
-zostanie wykorzystana średnia. Do wykrycia brakujących wartości wykorzystaj
-funkcję `is.na()`.
+5. Napisz funkcję, która wygeneruje ciąg liczb w określonym zakresie (poprzez 
+zdefiniowany początek i koniec) wraz z podanym interwałem (np. co 10). W tym 
+celu wykorzystaj odpowiedni rodzaj pętli. Ciąg liczb może być rosnący lub malejący.
