@@ -147,9 +147,3 @@ if (srednia(1:5) != 3) print("Nieprawidłowy wynik")
 if (srednia(c(-20, -10)) != -15) print("Nieprawidłowy wynik")
 ```
 
-# Zadanie
-
-1. Napisz funkcję, która umożliwi [normalizację](https://en.wikipedia.org/wiki/Feature_scaling#Methods)
-wartości wektora liczbowego za pomocą średniej (*mean normalization*) oraz
-wartości Z-score (*Z-score normalization*). Uwzględnij dokumentację, walidację
-parametrów wejściowych, testy oraz dobre praktyki programistyczne.
