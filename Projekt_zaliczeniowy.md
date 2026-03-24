@@ -11,7 +11,7 @@ danych. Aby rozwiązać ten problem, stosuje się normalizację danych. Jest to
 matematyczne sprowadzenie wszystkich zmiennych do wspólnej, porównywalnej skali,
 bez utraty informacji o relacjach między nimi. Dwie najpopularniejsze metody to:
 
-- Normalizacja średnią (mean normalization) -- wartości zostają przeskalowane
+- Normalizacja średnią (*mean normalization*) -- wartości zostają przeskalowane
 względem średniej i rozstępu zbioru (różnica między wartością maksymalną a
 minimalną). Średnia znormalizowanych wartości wynosi 0, a zakres mieści się w
 przybliżonym przedziale od -1 do 1.
@@ -19,7 +19,7 @@ Wzór:
 
 $$x_{norm} = \frac{x - \text{mean}(x)}{\max(x) - \min(x)}$$
 
-- Normalizacja Z-score (Z-score normalization) – wartości zostają przeskalowane
+- Normalizacja Z-score (*Z-score normalization*) –- wartości zostają przeskalowane
 w taki sposób, aby ich średnia wynosiła 0, a odchylenie standardowe 1.
 Wartości zostają wyrażone jako liczba odchyleń standardowych od średniej.
 Wzór:
