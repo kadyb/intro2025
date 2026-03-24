@@ -19,7 +19,7 @@ Wzór:
 
 $$x_{norm} = \frac{x - \text{mean}(x)}{\max(x) - \min(x)}$$
 
-- Normalizacja Z-score (*Z-score normalization*) –- wartości zostają przeskalowane
+- Normalizacja Z-score (*Z-score normalization*) -- wartości zostają przeskalowane
 w taki sposób, aby ich średnia wynosiła 0, a odchylenie standardowe 1.
 Wartości zostają wyrażone jako liczba odchyleń standardowych od średniej.
 Wzór:
