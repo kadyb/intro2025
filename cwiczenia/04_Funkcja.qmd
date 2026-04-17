@@ -176,7 +176,7 @@ rozwiązać bez przerywania działania programu. Przyczyny błędów mogą być
 zróżnicowane, np. nieprawidłowy format danych wejściowych, brak pliku w
 określonej lokalizacji, dzielenie przez zero, itd.
 
-Funkcja może zwrócić trzy stany:
+Podczas wykonywania funkcji mogą wystąpić trzy rodzaje sygnałów:
 
 - błąd (*error*) -- sytuacja krytyczna, która zatrzymuje wykonywanie programu
 (np. próba uzyskania dostępu do nieistniejącego obiektu).
@@ -244,11 +244,15 @@ pierwiastek("tekst")
 
 1. Napisz funkcję, która sprawdzi czy liczba jest parzysta. Jeśli warunek
 zostanie spełniony, to zwróci wartość logiczną `TRUE`, w przeciwnym razie `FALSE`.
+
 2. Napisz funkcję, która zwraca wszystkie liczby od `1` do `n`, które są podzielne
 przez `k`.
+
 3. Napisz funkcję, która obliczy odległość euklidesową pomiędzy dwoma punktami.
+
 4. Napisz funkcję, która zamieni stopnie Celsjusza na Fahrenheita oraz wykona
 operację odwrotną. Rodzaj konwersji powinien zostać określony przez użytkownika.
+
 5. Napisz funkcję, która wygeneruje ciąg liczb w określonym zakresie (poprzez 
 zdefiniowany początek i koniec) wraz z podanym interwałem (np. co 10). W tym 
 celu wykorzystaj odpowiedni rodzaj pętli. Ciąg liczb może być rosnący lub malejący.
