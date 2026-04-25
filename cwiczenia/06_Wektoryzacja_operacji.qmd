@@ -125,10 +125,11 @@ Wtedy lepiej zastosować standardowe instrukcje warunkowe.
 
 ```{r}
 x = -2:2
-ifelse(x < 0,
-       "Wartość ujemna",
-       ifelse(x == 0, "Zero", "Wartość dodatnia")
-       )
+ifelse(
+  x < 0,
+  "Wartość ujemna",
+  ifelse(x == 0, "Zero", "Wartość dodatnia")
+)
 ```
 
 W kontekście wektoryzacji sprawdzania warunków logicznych, możemy wykorzystać
