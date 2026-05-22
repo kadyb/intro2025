@@ -74,7 +74,7 @@ Oś pozioma (X) zazwyczaj reprezentuje czas, jednak nie jest to regułą. Linie
 proste łączą kolejne punkty, pokazując trend lub przebieg zmian, co pomaga
 przedstawić, w jaki sposób zmienna zależna na osi Y zmienia się wraz ze zmienną
 niezależną na osi X. Do utworzenia wykresu liniowego należy użyć argumentu `type`
-w funkcji `plot()` z wartością `"l"`.
+w funkcji `plot()` ustawionego na literę `"l"` (skrót od słowa *line*).
 
 ```{r}
 # dane muszą być posortowane

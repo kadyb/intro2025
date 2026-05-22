@@ -2463,7 +2463,7 @@ window.Quarto = {
 </section>
 <section id="wykres-liniowy" class="level2">
 <h2 class="anchored" data-anchor-id="wykres-liniowy">Wykres liniowy</h2>
-<p>Wykres liniowy jest najczęściej używany do pokazywania trendów lub zmian w czasie. Oś pozioma (X) zazwyczaj reprezentuje czas, jednak nie jest to regułą. Linie proste łączą kolejne punkty, pokazując trend lub przebieg zmian, co pomaga przedstawić, w jaki sposób zmienna zależna na osi Y zmienia się wraz ze zmienną niezależną na osi X. Do utworzenia wykresu liniowego należy użyć argumentu <code>type</code> w funkcji <code>plot()</code> z wartością <code>&quot;l&quot;</code>.</p>
+<p>Wykres liniowy jest najczęściej używany do pokazywania trendów lub zmian w czasie. Oś pozioma (X) zazwyczaj reprezentuje czas, jednak nie jest to regułą. Linie proste łączą kolejne punkty, pokazując trend lub przebieg zmian, co pomaga przedstawić, w jaki sposób zmienna zależna na osi Y zmienia się wraz ze zmienną niezależną na osi X. Do utworzenia wykresu liniowego należy użyć argumentu <code>type</code> w funkcji <code>plot()</code> ustawionego na literę <code>&quot;l&quot;</code> (skrót od słowa <em>line</em>).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dane muszą być posortowane</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sorted <span class="ot">=</span> mtcars[<span class="fu">order</span>(mtcars<span class="sc">$</span>wt), ]</span>
