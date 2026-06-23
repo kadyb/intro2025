@@ -16,15 +16,15 @@ format:
 # Instrukcja warunkowa
 
 **Instrukcja warunkowa** to podstawowy element programowania, który umożliwia
-podejmowanie decyzji i wykonywanie różnych bloków kodu na podstawie określonych
-warunków.
+podejmowanie decyzji i wykonywanie różnych bloków kodu w zależności od spełnienia
+określonych warunków.
 
 ```{mermaid}
 %%| fig-align: center
 flowchart TD
     A[Start] --> B{x > 0?}
-    B -->|PRAWDA| C[Wykonaj kod]
-    B -->|FAŁSZ| D[Wykonaj kod]
+    B -->|PRAWDA| C[Wykonaj A]
+    B -->|FAŁSZ| D[Wykonaj B]
     C --> E[Koniec]
     D --> E[Koniec]
 ```
